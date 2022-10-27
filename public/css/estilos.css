@@ -1,0 +1,214 @@
+/*@font-face {
+
+    font-family: "AnekTamil-Regular";
+    src: url("{{asset('fonts/AnekTamil-Regular.ttf')}}");
+
+}*/
+
+* {
+
+    font-family: 'Anek Latin', sans-serif;
+
+}
+
+body {
+
+    background-color: #262626;
+
+}
+
+header {
+
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 105%;
+    z-index: 200; /*para que funcionen los enlaces*/
+
+}
+
+header .logo a img {
+
+    width: 100px;
+
+}
+
+#video_fondo {
+
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+}
+
+#titulo_gimnasio {
+
+    padding: 2% 5%;
+    border: 5px solid yellow;
+    font-size: 600%;
+    color: yellow;
+    position: absolute;
+    top: 70%;
+    left: 10%;
+
+}
+
+.espacio {
+
+    height: 150px;
+
+}
+
+.titulo {
+
+    color: orange;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+.borde {
+
+    width: 5em;
+    height: 1px;
+    background-color: white;
+    margin: 1em auto;
+
+}
+
+.imagen_carousel {
+
+    width: 960px;
+    height: 640px;
+    margin: auto;
+
+}
+
+.texto-imagen-centrado {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.5em;
+
+}
+
+.actividades .texto-imagen-centrado {
+
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
+.mini_galeria {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    margin: 5em;
+
+}
+
+.mini_galeria img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.galeria {
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+}
+
+.galeria img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.login {
+
+    width: 600px;
+
+}
+
+.login label {
+
+    width: fit-content;
+
+}
+
+.contacto {
+
+    width: 50%;
+
+}
+
+.contacto label {
+
+    width: fit-content;
+
+}
+
+#servicios img {
+
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+
+}
+
+#servicios .card:hover img {
+
+    opacity: 0.3;
+
+}
+
+#servicios .card:hover h1 {
+
+    opacity: 1;
+
+}
+
+#servicios .texto-servicios {
+
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+footer {
+
+    background-color: #474747;
+    color: white;
+
+}
+
+footer nav ul li {
+
+    border: 2px white solid;
+    border-radius: 20px;
+    padding: 0.5em;
+
+}
+
+@media (max-width: 1500px) {
+
+    #titulo_gimnasio {
+
+        display: none;
+
+    }
+
+}

@@ -1,0 +1,361 @@
+{
+  "actividades": [
+    {
+      "id": "ACF",
+      "nombre": "Acondicionamiento Físico",
+      "imagen": "img/pexels-photo-8032753.jpeg"
+    },
+    {
+      "id": "AQG",
+      "nombre": "Aquagym",
+      "imagen": "img/pexels-photo-863988.jpeg"
+    },
+    {
+      "id": "BDS",
+      "nombre": "Bodystep",
+      "imagen": "img/bodystep.jpg"
+    },
+    {
+      "id": "BOX",
+      "nombre": "Boxeo",
+      "imagen": "img/pexels-photo-4754139.jpeg"
+    },
+    {
+      "id": "CIR",
+      "nombre": "Ciclo Indoor",
+      "imagen": "img/pexels-photo-4046657.jpeg"
+    },
+    {
+      "id": "COR",
+      "nombre": "Core",
+      "imagen": "img/bicycleAbCruches-1216161742_770x553-650x428.jpg"
+    },
+    {
+      "id": "GAP",
+      "nombre": "G.A.P.",
+      "imagen": "img/pexels-photo-4498577.jpeg"
+    },
+    {
+      "id": "HIT",
+      "nombre": "HIIT",
+      "imagen": "img/pexels-photo-1552242.jpg"
+    },
+    {
+      "id": "KGX",
+      "nombre": "Kickboxing",
+      "imagen": "img/pexels-photo-598686.jpeg"
+    },
+    {
+      "id": "PIL",
+      "nombre": "Pilates",
+      "imagen": "img/pexels-photo-1103242.jpeg"
+    },
+    {
+      "id": "STR",
+      "nombre": "Stretch",
+      "imagen": "img/pexels-photo-209969.jpeg"
+    },
+    {
+      "id": "TKD",
+      "nombre": "Taekwondo",
+      "imagen": "img/pexels-photo-7045384.jpeg"
+    },
+    {
+      "id": "TRX",
+      "nombre": "TRX",
+      "imagen": "img/1366_2000.jpeg"
+    },
+    {
+      "id": "YOG",
+      "nombre": "Yoga",
+      "imagen": "img/pexels-photo-3823039.jpeg"
+    },
+    {
+      "id": "ZUM",
+      "nombre": "Zumba",
+      "imagen": "img/zumfinal.jpg"
+    }    
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "albamenz",
+      "email": "albamenz@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 2,
+      "usuario": "juanpri",
+      "email": "juanpri@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 3,
+      "usuario": "carlitosthyn",
+      "email": "carlitosthyn@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 4,
+      "usuario": "alfonsogonz",
+      "email": "alfonsogonz@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 5,
+      "usuario": "carmentrm",
+      "email": "carmentrm@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 6,
+      "usuario": "antoniono",
+      "email": "antoniono@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 7,
+      "usuario": "rosabalz",
+      "email": "rosabalz@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 8,
+      "usuario": "marcosini",
+      "email": "marcosini@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 9,
+      "usuario": "alberttvvd",
+      "email": "alberttvvd@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 10,
+      "usuario": "mariajunj",
+      "email": "mariajunj@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 11,
+      "usuario": "nhmsvbgfggd",
+      "email": "nhmsvbgfggd@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 12,
+      "usuario": "saramartin",
+      "email": "saramartin@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 13,
+      "usuario": "danialways",
+      "email": "danialways@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 14,
+      "usuario": "jesuszarracina",
+      "email": "jesuszarracina@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 15,
+      "usuario": "aliciadominguez",
+      "email": "aliciadominguez@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 16,
+      "usuario": "lfnesjvsvxd",
+      "email": "lfnesjvsvxd@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 17,
+      "usuario": "jorgelop",
+      "email": "jorgelop@example.es",
+      "contrasena": "password"
+
+    },
+    {
+      "id": 18,
+      "usuario": "laurakiju",
+      "email": "laurakiju@example.es",
+      "contrasena": "password"
+
+    }
+  ],
+  "servicios": [
+    {
+      "id": 1,
+      "nombre": "Entrenador personal",
+      "imagen": "img/pexels-photo-6456305.jpeg"
+    },
+    {
+      "id": 2,
+      "nombre": "Tatami para artes marciales",
+      "imagen": "img/suelo-goma-eva.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Nutricionista",
+      "imagen": "img/pexels-photo-1640777.jpeg"
+    },
+    {
+      "id": 4,
+      "nombre": "Sala Fitness",
+      "imagen": "img/pexels-photo-3823204.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Material deportivo en buen estado",
+      "imagen": "img/pexels-photo-703012.jpeg"
+    },
+    {
+      "id": 6,
+      "nombre": "Taquillas personales",
+      "imagen": "img/pexels-photo-5383994.jpeg"
+    }
+  ],
+  "reservas": [
+    {
+      "id": 1,
+      "id_act": "TKD",
+      "usuario": "jorgelop",
+      "fecha": "05/01/2022"
+    },
+    {
+      "id": 2,
+      "id_act": "ACF",
+      "usuario": "alfonsogonz",
+      "fecha": "08/02/2022"
+    },
+    {
+      "id": 3,
+      "id_act": "PIL",
+      "usuario": "alberttvvd",
+      "fecha": "24/04/2022"
+    },
+    {
+      "id": 4,
+      "id_act": "STR",
+      "usuario": "lfnesjvsvxd",
+      "fecha": "07/01/2022"
+    },
+    {
+      "id": 5,
+      "id_act": "ZUM",
+      "usuario": "mariajunj",
+      "fecha": "15/01/2022"
+    },
+    {
+      "id": 6,
+      "id_act": "BDS",
+      "usuario": "carmentrm",
+      "fecha": "30/03/2022"
+    },
+    {
+      "id": 7,
+      "id_act": "BOX",
+      "usuario": "danialways",
+      "fecha": "15/01/2022"
+    },
+    {
+      "id": 8,
+      "id_act": "ZUM",
+      "usuario": "nhmsvbgfggd",
+      "fecha": "25/03/2022"
+    },
+    {
+      "id": 9,
+      "id_act": "ACF",
+      "usuario": "albamenz",
+      "fecha": "30/04/2022"
+    },
+    {
+      "id": 10,
+      "id_act": "KGX",
+      "usuario": "carlitosthyn",
+      "fecha": "06/02/2022"
+    },
+    {
+      "id": 11,
+      "id_act": "PIL",
+      "usuario": "saramartin",
+      "fecha": "14/01/2022"
+    },
+    {
+      "id": 12,
+      "id_act": "GAP",
+      "usuario": "mariajunj",
+      "fecha": "28/01/2022"
+    },
+    {
+      "id": 13,
+      "id_act": "KGX",
+      "usuario": "juanpri",
+      "fecha": "05/02/2022"
+    },
+    {
+      "id": 14,
+      "id_act": "ACF",
+      "usuario": "rosabalz",
+      "fecha": "27/01/2022"
+    },
+    {
+      "id": 15,
+      "id_act": "PIL",
+      "usuario": "alfonsogonz",
+      "fecha": "13/04/2022"
+    },
+    {
+      "id": 16,
+      "id_act": "YOG",
+      "usuario": "alberttvvd",
+      "fecha": "29/03/2022"
+    },
+    {
+      "id": 17,
+      "id_act": "KGX",
+      "usuario": "carmentrm",
+      "fecha": "02/04/2022"
+    },
+    {
+      "id": 18,
+      "id_act": "ACF",
+      "usuario": "jesuszarracina",
+      "fecha": "04/03/2022"
+    },
+    {
+      "id": 19,
+      "id_act": "ZUM",
+      "usuario": "antoniono",
+      "fecha": "26/01/2022"
+    },
+    {
+      "id": 20,
+      "id_act": "PIL",
+      "usuario": "marcosini",
+      "fecha": "12/02/2022"
+    }
+  ]
+}
