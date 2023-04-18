@@ -13,10 +13,4 @@ class Activitie extends Model
 
     protected $fillable=['name'];
 
-    public function reservations() {
-
-        return $this->hasMany(Reservation::class);
-
-    }
-
 }

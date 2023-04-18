@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->seedRelationRolesUser();
         $this->seedActivities();
-        $this->seedServices();
+        $this->seedHours();
         $this->seedReservations();
 
     }
@@ -114,80 +114,95 @@ class DatabaseSeeder extends Seeder
 
     }
 
-    public function seedServices() {
+    public function seedHours() {
 
-        $ids=[
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"
+        $activ=[
+            "ACF",
+            "AQG",
+            "BDS",
+            "BOX",
+            "CIR",
+            "COR",
+            "GAP",
+            "HIT",
+            "KGX",
+            "PIL",
+            "STR",
+            "TKD",
+            "TRX",
+            "YOG",
+            "ZUM",
+            "CIR",
+            "COR",
+            "GAP",
+            "HIT",
+            "KGX",
+            "PIL"
         ];
 
-        $nombres=[
-            "Entrenador personal",
-            "Tatami para artes marciales",
-            "Nutricionista",
-            "Sala Fitness",
-            "Material deportivo en buen estado",
-            "Taquillas personales"
+        $dias_semana=[
+            "Viernes",
+            "Miércoles",
+            "Sábado",
+            "Domingo",
+            "Viernes",
+            "Jueves",
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miércoles",
+            "Jueves",
+            "Lunes",
+            "Sábado",
+            "Viernes",
+            "Lunes",
+            "Martes",
+            "Miércoles",
+            "Sábado",
+            "Domingo",
+            "Miércoles",
+            "Jueves"
         ];
 
-        $imagenes=[
-            "serv/pexels-photo-6456305.jpeg",
-            "serv/suelo-goma-eva.jpg",
-            "serv/pexels-photo-1640777.jpeg",
-            "serv/pexels-photo-3823204.jpg",
-            "serv/pexels-photo-703012.jpeg",
-            "serv/pexels-photo-5383994.jpeg"
+        $horas=[
+            "09:30 - 10:30",
+            "11:00 - 12:00",
+            "10:30 - 11:30",
+            "17:00 - 18:00",
+            "12:00 - 13:00",
+            "11:30 - 12:30",
+            "19:30 - 20:30",
+            "10:30 - 11:30",
+            "13:00 - 14:00",
+            "11:30 - 12:30",
+            "18:00 - 19:00",
+            "12:30 - 13:30",
+            "16:30 - 17:30",
+            "20:30 - 21:30",
+            "18:30 - 19:30",
+            "16:00 - 17:00",
+            "09:30 - 10:30",
+            "12:00 - 13:00",
+            "15:00 - 16:00",
+            "17:30 - 18:30",
+            "14:30 - 15:30"
         ];
 
-        for($i=0;$i<count($nombres);$i++) {
+        for($i=0;$i<count($activ);$i++) {
 
-            DB::table('services')->insert([
-                'id'=>$ids[$i],
-                'name'=>$nombres[$i],
-                'image'=>$imagenes[$i],
+            DB::table('hours')->insert([
+                'act_shortname'=>$activ[$i],
+                'day_of_the_week'=>$dias_semana[$i],
+                'hour'=>$horas[$i],
             ]);
 
         }
-
 
     }
 
     public function seedReservations() {
 
         Reservation::factory(20)->create();
-
-        /*$fechas=[
-            "05/01/2022",
-            "08/02/2022",
-            "24/04/2022",
-            "07/01/2022",
-            "15/01/2022",
-            "30/03/2022",
-            "15/01/2022",
-            "25/03/2022",
-            "30/04/2022",
-            "06/02/2022",
-            "14/01/2022",
-            "28/01/2022",
-            "05/02/2022",
-            "27/01/2022",
-            "13/04/2022",
-            "29/03/2022",
-            "02/04/2022",
-            "04/03/2022",
-            "26/01/2022",
-            "12/02/2022"
-        ];
-
-        foreach ($fechas as $date) {
-
-            Reservation::create(compact('date'));
-
-        }*/
 
     }
 

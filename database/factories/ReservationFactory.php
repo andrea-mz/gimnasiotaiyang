@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\Activitie;
+use \App\Models\Hour;
 use \App\Models\User;
 
 class ReservationFactory extends Factory
@@ -16,9 +16,8 @@ class ReservationFactory extends Factory
     public function definition()
     {
         return [
-            'act_id'=>Activitie::query()->inRandomOrder()->first()->getKey(),
             'user_id'=>User::query()->where('id','<>','1')->inRandomOrder()->first()->getKey(),
-            'date' =>$this->faker->dateTimeThisYear('+1 month')->format('Y-m-d'),
+            'hour_id'=>Hour::query()->inRandomOrder()->first()->getKey(),
         ];
     }
 }
