@@ -3,7 +3,7 @@
 @section('content')
     <div class="espacio"></div>
     <h1 class="titulo mb-5 fs-1">Inicio de Sesión</h1>
-    <form action="POST" action="{{ route('login') }}" class="login text-white fs-3 row mx-auto flex-column border border-5 border-white p-3">
+    <form method="POST" action="{{ route('login') }}" class="login text-white fs-3 row mx-auto flex-column border border-5 border-white p-3">
         @csrf
         <label for="email" class="my-3 mx-5 ps-4">Correo electrónico:</label>
         <input type="email" name="email" id="email" class="my-3 mx-auto w-75 form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus>

@@ -47,7 +47,7 @@ Route::get('user/{id?}', function($id=’invitado’) {
 
 Route::resource('activities', ActivitieController::class);
 
-Route::resource('songs', SongController::class);
+Route::resource('reservations', ReservationController::class);
 
 /*Route::get('contacta', function() {
     $correo=new ContactaMail;

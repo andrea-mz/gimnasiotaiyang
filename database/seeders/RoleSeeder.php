@@ -20,6 +20,6 @@ class RoleSeeder extends Seeder
         $role3=Role::create(['name'=>'guest']);
         Permission::create(['name'=>'admin'])->syncRoles([$role1,$role2]);
         Permission::create(['name'=>'admin.list_users'])->syncRoles($role1);
-        Permission::create(['name'=>'admin.list_songs'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.list_reservations'])->syncRoles([$role1,$role2,$role3]);
     }
 }

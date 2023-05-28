@@ -13,4 +13,10 @@ class Activitie extends Model
 
     protected $fillable=['name'];
 
+    function get_activities() {
+
+        //$activities=DB::select('SELECT * FROM ')
+
+    }
+
 }

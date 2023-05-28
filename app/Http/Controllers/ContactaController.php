@@ -32,7 +32,7 @@ class ContactaController extends Controller
     public function company() {
 
         return view('company');
-        
+
     }
 
 }

@@ -22,7 +22,7 @@ class ActivitieController extends Controller
      */
     public function index()
     {
-        //$groups=Group::paginate(10);
+        $activities=Activitie::paginate(10);
 
         return view("activities.index");
     }

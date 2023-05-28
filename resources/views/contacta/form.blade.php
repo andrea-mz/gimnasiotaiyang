@@ -1,58 +1,45 @@
-<form class="w-full max-w-lg border-4 " method="POST" action="{{ route('contacta.store') }}" style="border-color: #e3a008;">
+@extends("layouts.app")
+
+@section("content")
+    <div class="espacio"></div>
+    <h1 class="titulo mb-5 fs-1">Contacto</h1>
+    <form class="contacto text-white fs-3 row mx-auto border border-5 border-white p-3" method="POST" action="{{ route('contacta.store') }}" style="border-color: #e3a008;">
     @csrf
-     <h1 class="font-semibold py-5 text-blue mb-10 bg-yellow-400 text-white px-5"> Formulario </h1>
-    
-    <div class="flex flex-wrap -mt-10">
-        <div class="w-full px-5">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="name">
-                {{ __("Nombre") }}
-            </label>
-            <input name="name" value="{{ Auth::user()->name }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text">
-            <p class="text-gray-600 text-xs italic -my-3">{{ __("Nombre del usuario") }}</p>
+        <div class="name">
+            <label for="name" class="my-3 ps-4 text-center">{{ __("Nombre:") }}</label>
+            <input type="text" name="name" value="" id="name" type="text" class="my-3 mx-auto ps-2 w-100 text-dark">
             @error("name")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}
             </div>
             @enderror
         </div>
-    </div>
-    <div class="flex flex-wrap mt-3 ">
-        <div class="w-full px-5">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="email">
-                {{ __("Email") }}
-            </label>
-            <input name="email" value="{{ Auth::user()->email }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text">
-            <p class="text-gray-600 text-xs italic -my-3">{{ __("Email de contacto") }}</p>
-            @error("email")
+        <div class="correo">
+                <label for="email" class="my-3 ps-4">{{ __("Correo electrónico:") }}</label>
+                <input type="email" name="email" value="" id="email" type="text" class="my-3 ps-2 w-100 mx-auto text-dark">
+                @error("email")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}
             </div>
             @enderror
-        </div>
-    </div>
-
-    <div class="flex flex-wrap mt-3">
-        <div class="w-full px-5">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="mensaje">
-                {{ __("Mensaje") }}
-            </label>
-            <textarea name="mensaje" class="no-resize appearance-none block w-full bg-gray-300 
-            text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
-            focus:bg-white focus:border-gray-500 h-48 resize-none" id="mensaje"></textarea>
-            <p class="text-gray-600 text-xs italic -my-3">{{ __("Escribe tu mensaje") }}</p>
-            @error("mensaje")
+            </div>
+            <div class="mensaje flex-column">
+                <label for="mensaje" class="my-3 ps-4">{{ __("Mensaje:") }}</label>
+                <textarea name="mensaje" id="mensaje" class="ps-2 w-100 text-dark" rows="10"></textarea>
+                @error("mensaje")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}
             </div>
             @enderror
-        </div>
-    </div>
-    <div class="md:flex md:items-center">
-        <div class="md:w-1/3">
-            <button class="shadow bg-yellow-400 mt-5 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-                {{ 'Enviar mensaje' }}
+            </div>
+            <div class="terminos text-center my-2">
+                <input type="checkbox" name="terminos" id="terminos" required>
+                <label for="terminos">Acepto los términos y las condiciones.</label>
+            </div>
+            <button class="my-3 w-50 mx-auto bg-light text-dark" type="submit">
+                {{ 'Enviar' }}
             </button>
-        </div>
     </div>
 </form>
 </div>
+@endsection
