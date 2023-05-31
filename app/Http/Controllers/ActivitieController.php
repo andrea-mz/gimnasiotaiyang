@@ -24,7 +24,7 @@ class ActivitieController extends Controller
     {
         $activities=Activitie::paginate(10);
 
-        return view("activities.index");
+        return view("activities.index", compact("activities"));
     }
 
     /**
@@ -50,22 +50,18 @@ class ActivitieController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "name" => "required|max:140|unique:groups",
+            "name" => "required|max:140|unique:activities",
             "imagen"=>"required|image|mimes:jpg,gif,png,jpeg|"
 
         ]);
-        /*$group = Group::make(
-            $request->only("name")
-        );
-        $group->save();*/
-        Group::create(
+
+        Activitie::create(
 
             array_merge(
 
                 $request->only("name"),[
 
-                    //"imagen"=>$request->file('imagen')->store('','images')
-                    "imagen"=>$file->storeAs('',uniqid()."-".$file->getClientOriginalName(),'images')
+                    "image"=>$file->storeAs('',uniqid()."-".$file->getClientOriginalName(),'images')
 
                 ]
 
@@ -73,8 +69,8 @@ class ActivitieController extends Controller
 
         );
 
-        return redirect(route("groups.index"))
-            ->with("success", __("¡Grupo añadido con éxito!"));
+        return redirect(route("activities.index"))
+            ->with("success", __("¡Actividad añadida con éxito!"));
     }
 
     /**
@@ -83,13 +79,13 @@ class ActivitieController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Group $group)
+    public function edit(Activitie $act)
     {
         $update = true;
-        $title = __("Editar grupo");
+        $title = __("Editar actividad");
         $textButton = __("Actualizar");
-        $route = route("groups.update", ["group" => $group]);
-        return view("groups.edit", compact("update", "title", "textButton", "route", "group"));
+        $route = route("activitie.update", ["activitie" => $act]);
+        return view("activitie.edit", compact("update", "title", "textButton", "route", "activitie"));
     }
 
     /**
@@ -99,26 +95,25 @@ class ActivitieController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, Activitie $act)
     {
         $this->validate($request, [
 
-            "name" => "required|unique:groups,name," . $group->id,
+            "name" => "required|unique:activities,name," . $act->id,
 
         ]);
 
-        $group->fill($request->only("name"));
+        $act->fill($request->only("name"));
 
-        if($request->hasFile('imagen')){
+        if($request->hasFile('image')){
 
-            Storage::disk('images')->delete('images/'.$group->imagen);
-            //$group->imagen=$request->file('imagen')->store('','images');
-            $group->imagen=$request->file('imagen')->storeAs('',uniqid()."-"-$request->file('imagen')->getClientOriginalName(), 'images');
+            Storage::disk('images')->delete('images/'.$act->image);
+            $act->image=$request->file('image')->storeAs('',uniqid()."-"-$request->file('image')->getClientOriginalName(), 'images');
 
         }
 
-        $group->save();
-        return redirect(route("groups.index"))->with("success", __("¡Grupo actualizado con éxito!"));
+        $act->save();
+        return redirect(route("activitie.index"))->with("success", __("¡Actividad actualizada con éxito!"));
     }
 
     /**
@@ -127,9 +122,9 @@ class ActivitieController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Group $group)
+    public function destroy(Activitie $act)
     {
-        $group->delete();
-        return back()->with("success", __("¡Grupo eliminado con éxito!"));
+        $act->delete();
+        return back()->with("success", __("¡Actividad eliminada con éxito!"));
     }
 }

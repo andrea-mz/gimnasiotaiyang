@@ -115,17 +115,35 @@ header .logo a img {
 
 }
 
-.galeria {
+#galeria {
 
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+
+}
+    
+#galeria .card:hover img {
+
+        opacity: 0.3;
 
 }
 
-.galeria img {
+#galeria .card:hover h1 {
 
-    width: 100%;
-    height: 100%;
+opacity: 1;
+
+}
+
+#galeria .texto-actividades {
+
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 
 }
 
@@ -150,40 +168,6 @@ header .logo a img {
 .contacto label {
 
     width: fit-content;
-
-}
-
-#servicios img {
-
-    opacity: 1;
-    display: block;
-    transition: .5s ease;
-    backface-visibility: hidden;
-
-}
-
-#servicios .card:hover img {
-
-    opacity: 0.3;
-
-}
-
-#servicios .card:hover h1 {
-
-    opacity: 1;
-
-}
-
-#servicios .texto-servicios {
-
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
 
 }
 

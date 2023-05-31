@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Group;
-use App\Models\Song;
+use App\Models\Activitie;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 
-class SongController extends Controller
+class ReservationController extends Controller
 {
     public function __construct()
     {
@@ -23,10 +23,10 @@ class SongController extends Controller
     public function index()
     {
         if(Auth::user()->name=='andrea') 
-            $songs=Song::paginate(10);
+            $reservations=Reservation::paginate(10);
         else
-            $songs=Auth::user()->songs()->paginate(10);
-        return view("songs.index", compact("songs"));
+            $reservations=Auth::user()->reservations()->paginate(10);
+        return view("reservations.index", compact("reservations"));
     }
 
     /**
@@ -34,14 +34,14 @@ class SongController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create($act)
     {
-        $group=Group::all();
-        $song = new Song;
-        $title = __("Añadir canción");
+        $activities=Activitie::all();
+        $reservation = new Reservation;
+        $title = __("Añadir reserva");
         $textButton = __("Añadir");
-        $route = route("songs.store");
-        return view("songs.create", compact("title", "textButton", "route", "song", "group"));
+        $route = route("reservations.store");
+        return view("reservations.create", compact("title", "textButton", "route", "reservation", "activities"));
     }
 
     /**
@@ -63,7 +63,7 @@ class SongController extends Controller
         $song->group_id=$request->input('group_id'); 
         $song->save();
 
-        return redirect(route("songs.index"))
+        return redirect(route("reservations.index"))
             ->with("success", __("¡Canción añadida con éxito!"));
     }
 
@@ -79,8 +79,8 @@ class SongController extends Controller
         $update = true;
         $title = __("Editar canción");
         $textButton = __("Actualizar");
-        $route = route("songs.update", ["song" => $song]);
-        return view("songs.edit", compact("update", "title", "textButton", "route", "song", "group"));
+        $route = route("reservations.update", ["song" => $song]);
+        return view("reservations.edit", compact("update", "title", "textButton", "route", "song", "group"));
     }
 
     /**
@@ -97,7 +97,7 @@ class SongController extends Controller
         ]);
         $song->group_id=$request->input('group_id'); 
         $song->fill($request->only("name"))->save();
-        return redirect(route("songs.index"))->with("success", __("¡Canción actualizada con éxito!"));
+        return redirect(route("soreservationsngs.index"))->with("success", __("¡Canción actualizada con éxito!"));
     }
 
     /**
