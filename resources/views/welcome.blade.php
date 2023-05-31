@@ -65,7 +65,7 @@
         </div>
         <div class="d-grid justify-content-end">
             <button type="submit" class="btn btn-warning me-5 bg-warning">
-                <a href="actividades.html" class="text-decoration-none text-black fs-4">
+                <a href="{{ route('activities.index') }}" class="text-decoration-none text-black fs-4">
                     Todas las actividades
                 </a>
             </button>

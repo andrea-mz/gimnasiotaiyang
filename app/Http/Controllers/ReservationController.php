@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activitie;
-use App\Models\Reservation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
 
 class ReservationController extends Controller
 {
@@ -22,11 +18,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->name=='andrea') 
-            $reservations=Reservation::paginate(10);
-        else
-            $reservations=Auth::user()->reservations()->paginate(10);
-        return view("reservations.index", compact("reservations"));
+        $projects = Project::with('user')->paginate(10);
+        return view("projects.index", compact("projects"));
     }
 
     /**
@@ -34,14 +27,14 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create($act)
+    public function create()
     {
-        $activities=Activitie::all();
-        $reservation = new Reservation;
-        $title = __("Añadir reserva");
-        $textButton = __("Añadir");
-        $route = route("reservations.store");
-        return view("reservations.create", compact("title", "textButton", "route", "reservation", "activities"));
+        $project = new Project;
+        $title = __("Crear proyecto");
+        $textButton = __("Crear");
+        $route = route("projects.store");
+        //dd($route);
+        return view("projects.create", compact("title", "textButton", "route", "project"));
     }
 
     /**
@@ -53,62 +46,63 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "name" => "required",
+            "name" => "required|max:140|unique:projects",
+            "description" => "nullable|string|min:10",
+
         ]);
-
-        $song = Song::make(
-            $request->only("name"),
+       // $user=Auth::user()->id;
+      //  dd($user);
+        $project = Project::make(
+            $request->only("name", "description")
         );
-        $song->user_id=Auth::user()->id;
-        $song->group_id=$request->input('group_id'); 
-        $song->save();
+        $project->user_id = Auth::user()->id;
+        $project->save();
 
-        return redirect(route("reservations.index"))
-            ->with("success", __("¡Canción añadida con éxito!"));
+        return redirect(route("projects.index"))
+            ->with("success", __("¡Proyecto creado!"));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Song  $song
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Song $song)
+    public function edit(Project $project)
     {
-        $group=Group::all();
         $update = true;
-        $title = __("Editar canción");
+        $title = __("Editar proyecto");
         $textButton = __("Actualizar");
-        $route = route("reservations.update", ["song" => $song]);
-        return view("reservations.edit", compact("update", "title", "textButton", "route", "song", "group"));
+        $route = route("projects.update", ["project" => $project]);
+        return view("projects.edit", compact("update", "title", "textButton", "route", "project"));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Song  $song
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Song $song)
+    public function update(Request $request, Project $project)
     {
         $this->validate($request, [
-            "name" => "required",
+            "name" => "required|unique:projects,name," . $project->id,
+            "description" => "nullable|string|min:10"
         ]);
-        $song->group_id=$request->input('group_id'); 
-        $song->fill($request->only("name"))->save();
-        return redirect(route("soreservationsngs.index"))->with("success", __("¡Canción actualizada con éxito!"));
+        $project->fill($request->only("name", "description"))->save();
+        return back()->with("success", __("¡Proyecto actualizado!"));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Song  $song
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Song $song)
+    public function destroy(Project $project)
     {
-        $song->delete();
-        return back()->with("success", __("¡Canción eliminada con éxito!"));
+        $project->delete();
+        return back()->with("success", __("¡Proyecto eliminado!"));
     }
 }

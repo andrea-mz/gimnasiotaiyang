@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactaController;
-use App\Http\Controllers\ActivitieController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\SongController;
 use App\Mail\ContactaMail;
 use Illuminate\Support\Facades\Mail;
@@ -45,7 +45,7 @@ Route::get('user/{id?}', function($id=’invitado’) {
     return 'Contacto: '.$id;
 });*/
 
-Route::resource('activities', ActivitieController::class);
+Route::resource('activities', ActivityController::class);
 
 Route::resource('reservations', ReservationController::class);
 

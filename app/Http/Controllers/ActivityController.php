@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activitie;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 
-class ActivitieController extends Controller
+class ActivityController extends Controller
 {
     public function __construct()
     {
@@ -22,7 +22,7 @@ class ActivitieController extends Controller
      */
     public function index()
     {
-        $activities=Activitie::paginate(10);
+        $activities=Activity::paginate(10);
 
         return view("activities.index", compact("activities"));
     }
@@ -34,11 +34,12 @@ class ActivitieController extends Controller
      */
     public function create()
     {
-        $group = new Group;
-        $title = __("Añadir grupo");
-        $textButton = __("Añadir");
-        $route = route("groups.store");
-        return view("groups.create", compact("title", "textButton", "route", "group"));
+        $activity = new Activity;
+        $title = __("Crear actividad");
+        $textButton = __("Crear");
+        $route = route("activities.store");
+        //dd($route);
+        return view("activities.create", compact("title", "textButton", "route", "activity"));
     }
 
     /**
@@ -50,81 +51,66 @@ class ActivitieController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            "shortname" => "required|max:3|unique:activities",
             "name" => "required|max:140|unique:activities",
-            "imagen"=>"required|image|mimes:jpg,gif,png,jpeg|"
+            "image" => "required|string|unique:activities",
 
         ]);
-
-        Activitie::create(
-
-            array_merge(
-
-                $request->only("name"),[
-
-                    "image"=>$file->storeAs('',uniqid()."-".$file->getClientOriginalName(),'images')
-
-                ]
-
-            )
-
+       // $user=Auth::user()->id;
+      //  dd($user);
+        $activity = Activity::make(
+            $request->only("shortname","name", "image")
         );
+        $activity->user_id = Auth::user()->id;
+        $activity->save();
 
         return redirect(route("activities.index"))
-            ->with("success", __("¡Actividad añadida con éxito!"));
+            ->with("success", __("¡Actividad creada correctamente!"));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Activitie $act)
+    public function edit(Activity $activity)
     {
         $update = true;
         $title = __("Editar actividad");
         $textButton = __("Actualizar");
-        $route = route("activitie.update", ["activitie" => $act]);
-        return view("activitie.edit", compact("update", "title", "textButton", "route", "activitie"));
+        $route = route("activities.update", ["activity" => $activity]);
+        return view("activities.edit", compact("update", "title", "textButton", "route", "activity"));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Activitie $act)
+    public function update(Request $request, Activity $activity)
     {
         $this->validate($request, [
-
-            "name" => "required|unique:activities,name," . $act->id,
-
+            "shortname" => "required|max:3|unique:activities",
+            "name" => "required|unique:activities,name," . $activity->id,
+            "image" => "required|string|unique:activities",
         ]);
 
-        $act->fill($request->only("name"));
-
-        if($request->hasFile('image')){
-
-            Storage::disk('images')->delete('images/'.$act->image);
-            $act->image=$request->file('image')->storeAs('',uniqid()."-"-$request->file('image')->getClientOriginalName(), 'images');
-
-        }
-
-        $act->save();
-        return redirect(route("activitie.index"))->with("success", __("¡Actividad actualizada con éxito!"));
+        $activity->fill($request->only("shortname","name", "image"))->save();
+        return back()->with("success", __("¡Actividad actualizada correctamente!"));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Activitie $act)
+    public function destroy(Activity $activity)
     {
-        $act->delete();
-        return back()->with("success", __("¡Actividad eliminada con éxito!"));
+        $activity->delete();
+        return back()->with("success", __("¡Actividad eliminada correctamente!"));
     }
 }
