@@ -15,11 +15,13 @@ class CreateHoursTable extends Migration
     {
         Schema::create('hours', function (Blueprint $table) {
             $table->id();
-            $table->string('act_shortname');
+            $table->bigInteger('act_id')->unsigned();
             $table->string('day_of_the_week');
             $table->string('hour');
+            $table->integer('reserved_places');
+            $table->integer('available_places');
 
-            $table->foreign('act_shortname')->references('shortname')->on('activities');
+            $table->foreign('act_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

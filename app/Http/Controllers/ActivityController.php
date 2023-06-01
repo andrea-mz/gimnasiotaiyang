@@ -53,7 +53,7 @@ class ActivityController extends Controller
         $this->validate($request, [
             "shortname" => "required|max:3|unique:activities",
             "name" => "required|max:140|unique:activities",
-            "image" => "required|string|unique:activities",
+            "image" => "required",
 
         ]);
        // $user=Auth::user()->id;
@@ -93,12 +93,11 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $this->validate($request, [
-            "shortname" => "required|max:3|unique:activities",
+            "shortname" => "required|max:3",
             "name" => "required|unique:activities,name," . $activity->id,
-            "image" => "required|string|unique:activities",
         ]);
 
-        $activity->fill($request->only("shortname","name", "image"))->save();
+        $activity->fill($request->only("shortname","name"))->save();
         return back()->with("success", __("¡Actividad actualizada correctamente!"));
     }
 

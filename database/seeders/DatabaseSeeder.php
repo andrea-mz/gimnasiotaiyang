@@ -117,27 +117,27 @@ class DatabaseSeeder extends Seeder
     public function seedHours() {
 
         $activ=[
-            "ACF",
-            "AQG",
-            "BDS",
-            "BOX",
-            "CIR",
-            "COR",
-            "GAP",
-            "HIT",
-            "KGX",
-            "PIL",
-            "STR",
-            "TKD",
-            "TRX",
-            "YOG",
-            "ZUM",
-            "CIR",
-            "COR",
-            "GAP",
-            "HIT",
-            "KGX",
-            "PIL"
+            "1",
+            "5",
+            "2",
+            "4",
+            "3",
+            "7",
+            "5",
+            "8",
+            "6",
+            "9",
+            "6",
+            "1",
+            "3",
+            "2",
+            "4",
+            "7",
+            "8",
+            "3",
+            "9",
+            "1",
+            "2"
         ];
 
         $dias_semana=[
@@ -188,12 +188,62 @@ class DatabaseSeeder extends Seeder
             "14:30 - 15:30"
         ];
 
+        $plazas_reservadas=[
+            "2",
+            "5",
+            "4",
+            "5",
+            "3",
+            "1",
+            "0",
+            "0",
+            "0",
+            "3",
+            "6",
+            "5",
+            "2",
+            "1",
+            "4",
+            "2",
+            "0",
+            "3",
+            "2",
+            "5",
+            "1"
+        ];
+
+        $plazas_libres=[
+            "5",
+            "6",
+            "4",
+            "5",
+            "4",
+            "2",
+            "5",
+            "1",
+            "2",
+            "3",
+            "6",
+            "5",
+            "2",
+            "1",
+            "4",
+            "2",
+            "0",
+            "3",
+            "2",
+            "5",
+            "1"
+        ];
+
         for($i=0;$i<count($activ);$i++) {
 
             DB::table('hours')->insert([
-                'act_shortname'=>$activ[$i],
+                'act_id'=>$activ[$i],
                 'day_of_the_week'=>$dias_semana[$i],
                 'hour'=>$horas[$i],
+                'reserved_places'=>$plazas_reservadas[$i],
+                'available_places'=>$plazas_libres[$i],
             ]);
 
         }

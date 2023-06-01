@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactaController;
 use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\SongController;
+use App\Http\Controllers\ReservationController;
 use App\Mail\ContactaMail;
 use Illuminate\Support\Facades\Mail;
 

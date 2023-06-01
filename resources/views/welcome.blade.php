@@ -49,18 +49,18 @@
     <section class="actividades mt-5">
         <h1 class="titulo fs-1">Principales actividades</h1>
         <div class="borde"></div>
-        <div class="mini_galeria">
-            <div class="card bg-dark text-white change">
-                <img src="{{asset('images/act/pexels-photo-863988.jpeg')}}" alt="Imagen Aquagym">
-                <h1 class="text-uppercase texto-imagen-centrado fs-1">Aquagym</h1>
+        <div id="galeria" class="m-5 px-5 gap-3">
+            <div class="card bg-dark">
+                <img class="w-100 h-100" src="{{asset('images/act/pexels-photo-863988.jpeg')}}" alt="Imagen Aquagym">
+                <h1 class="text-uppercase text-center text-light texto-imagen-centrado texto-actividades fs-1">Aquagym</h1>
             </div>
-            <div class="card bg-dark text-white">
-                <img src="{{asset('images/act/pexels-photo-4754139.jpeg')}}" alt="Imagen Boxeo">
-                <h1 class="text-uppercase texto-imagen-centrado fs-1">Boxeo</h1>
+            <div class="card bg-dark">
+                <img class="w-100 h-100" src="{{asset('images/act/pexels-photo-4754139.jpeg')}}" alt="Imagen Boxeo">
+                <h1 class="text-uppercase text-center text-light texto-imagen-centrado texto-actividades fs-1">Boxeo</h1>
             </div>
-            <div class="card bg-dark text-white">
-                <img src="{{asset('images/act/pexels-photo-7045384.jpeg')}}" alt="Imagen Taekwondo">
-                <h1 class="text-uppercase texto-imagen-centrado fs-1">Taekwondo</h1>
+            <div class="card bg-dark">
+                <img class="w-100 h-100" src="{{asset('images/act/pexels-photo-7045384.jpeg')}}" alt="Imagen Taekwondo">
+                <h1 class="text-uppercase text-center text-light texto-imagen-centrado texto-actividades fs-1">Taekwondo</h1>
             </div>
         </div>
         <div class="d-grid justify-content-end">

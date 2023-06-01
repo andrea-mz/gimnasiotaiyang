@@ -5,8 +5,8 @@
     @endisset
     <h1 class="my-5 titulo fs-1">{{ $title }}</h1>
     <div class="borde"></div>
-    <div class="mx-auto row justify-content-center w-50">
-        <div class="col-12">
+    <div class="mt-5 mx-auto row justify-content-center w-50">
+        <div class="col-6">
             <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3" for="shortname">
                 {{ __("Abreviatura") }}
             </label>
@@ -16,8 +16,6 @@
                 {{ $message }}
             </div>
             @enderror
-        </div>
-        <div class="col-12">
             <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3" for="name">
                 {{ __("Nombre") }}
             </label>
@@ -28,8 +26,8 @@
             </div>
             @enderror
         </div>
-        <div class="col-12">
-            <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3" for="imagen">
+        <div class="col-6">
+            <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3 text-end" for="imagen">
                 {{ __("Imagen") }}
             </label>
             @if (isset($activity->image))
@@ -42,12 +40,13 @@
             </div>
             @enderror
         </div>
-    </div>
-    <div class="md:flex md:items-center">
-        <div class="md:w-1/3">
-            <button class="shadow bg-yellow-400 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-                {{ $textButton }}
-            </button>
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3">
+                <button class="shadow bg-yellow-400 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                    {{ $textButton }}
+                </button>
+            </div>
         </div>
     </div>
 </form>
+
