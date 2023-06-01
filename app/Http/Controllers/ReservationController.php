@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -95,7 +96,7 @@ class ReservationController extends Controller
     {
         $this->validate($request, [
             "user_id" => "required" . $project->id,
-            "hour_id" => "required", 
+            "hour_id" => "required",
         ]);
         $reservation->fill($request->only("user_id", "hour_id"))->save();
         return back()->with("success", __("¡Reserva actualizada correctamente!"));
