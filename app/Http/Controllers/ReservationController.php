@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Hour;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -32,16 +32,18 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  App\Models\Activity $activity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Activity $activity)
+    public function create()
     {
-        $hours = DB::table('hours')->where('act_id', $activity)->get();
+        $activity = Activity::get_activity_by_id($_GET["activity"]);
+        $hours = Hour::get_hours_by_act($_GET["activity"]);
         $reservation = new Reservation;
         $title = __("Crear Reserva");
         $textButton = __("Crear");
         $route = route("reservations.store");
-        //dd($route);
+        //dd($hours);
         return view("reservations.create", compact("title", "textButton", "route", "reservation", "activity", "hours"));
     }
 
@@ -95,7 +97,7 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $this->validate($request, [
-            "user_id" => "required" . $project->id,
+            "user_id" => "required" . $reservation->id,
             "hour_id" => "required",
         ]);
         $reservation->fill($request->only("user_id", "hour_id"))->save();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Activity extends Model
 
@@ -19,10 +20,10 @@ class Activity extends Model
 
     }
 
-    // function get_activities() {
+    public static function get_activity_by_id($id) {
 
-    //     $activities=DB::select('SELECT * FROM ')
+        return DB::table('activities')->where('id', $id)->get();
 
-    // }
+    }
 
 }

@@ -27,7 +27,7 @@
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
-                <li class="mx-2 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
+                <li class="ms-2 me-1 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
@@ -35,8 +35,8 @@
                     @guest
 
                     @else
-                <li class="mx-2 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">{{ Auth::user()->name }}</a></li>
-                <li class="mx-2 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <li class="me-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">{{ Auth::user()->name }}</a></li>
+                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}

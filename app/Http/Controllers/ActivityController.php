@@ -52,17 +52,29 @@ class ActivityController extends Controller
     {
         $this->validate($request, [
             "shortname" => "required|max:3|unique:activities",
-            "name" => "required|max:140|unique:activities",
-            "image" => "required",
+            "name" => "required|max:40",
+            "image" => "required|image|mimes:jpg,gif,png,jpeg!"
 
         ]);
-       // $user=Auth::user()->id;
-      //  dd($user);
-        $activity = Activity::make(
-            $request->only("shortname","name", "image")
+        // $user=Auth::user()->id;
+        //  dd($user);
+        // $activity = Activity::make(
+        //     $request->only("shortname","name", "image")
+        // );
+        // $activity->user_id = Auth::user()->id;
+        // $activity->save();
+
+        $file=$request->file('image');
+
+        Activity::create(
+            array_merge(
+                $request->only("shortname", "name"),
+                [
+                    "image" => $file->storeAs('', uniqid(),"-".$file->getClientOriginalName(),'images'), //request->file('image')->store('','images'),
+                    "user_id" => Auth::user()->id
+                ]
+            )
         );
-        $activity->user_id = Auth::user()->id;
-        $activity->save();
 
         return redirect(route("activities.index"))
             ->with("success", __("¡Actividad creada correctamente!"));
@@ -76,6 +88,7 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
+        //dd($activity);
         $update = true;
         $title = __("Editar actividad");
         $textButton = __("Actualizar");
@@ -93,11 +106,19 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $this->validate($request, [
-            "shortname" => "required|max:3",
-            "name" => "required|unique:activities,name," . $activity->id,
+            "shortname" => "required|max:3|unique:activities,shortname," . $activity->id,
+            "name" => "required",
         ]);
 
-        $activity->fill($request->only("shortname","name"))->save();
+        $activity->fill($request->only("shortname","name"));
+
+        if($request->hasFile('image')){
+            Storage::disk('images')->delete(''.$activity->image);
+            $activity->image=$request->file('image')->storeAs('', uniqid(),"-".$request->file('image')->getClientOriginalName(),'images');//->store('','images');
+        }
+
+        $activity->save();
+
         return back()->with("success", __("¡Actividad actualizada correctamente!"));
     }
 

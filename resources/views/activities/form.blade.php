@@ -33,7 +33,7 @@
             @if (isset($activity->image))
                 <img src="{{asset('images/'.$activity->image)}}" style="max height: 100px; width:auto;">
             @endif
-            <input type="file" name="imagen" class="form-control" placeholder="Imagen">
+                <input type="file" name="imagen" class="form-control" placeholder="Imagen">
             @error("image")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}

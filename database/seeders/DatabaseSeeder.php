@@ -144,10 +144,10 @@ class DatabaseSeeder extends Seeder
             "Viernes",
             "Miércoles",
             "Sábado",
-            "Domingo",
+            "Lunes",
             "Viernes",
             "Jueves",
-            "Domingo",
+            "Martes",
             "Lunes",
             "Martes",
             "Miércoles",
@@ -159,7 +159,7 @@ class DatabaseSeeder extends Seeder
             "Martes",
             "Miércoles",
             "Sábado",
-            "Domingo",
+            "Viernes",
             "Miércoles",
             "Jueves"
         ];

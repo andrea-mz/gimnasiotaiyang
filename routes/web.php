@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,6 +49,14 @@ Route::get('user/{id?}', function($id=’invitado’) {
 Route::resource('activities', ActivityController::class);
 
 Route::resource('reservations', ReservationController::class);
+
+// Route::resource('reservations', ReservationController::class)
+//         ->missing(function (Activity $activity) {
+//             return Redirect::route('reservations.create');
+//         });
+
+// Route::get('{activity}/reservations/create/', [ReservationController::class, 'create'])->name('reservations.crear');
+// Route::get('/reservations/store/', [ReservationController::class, 'store'])->name('reservations.store');
 
 /*Route::get('contacta', function() {
     $correo=new ContactaMail;
