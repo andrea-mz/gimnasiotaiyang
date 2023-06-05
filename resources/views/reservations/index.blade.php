@@ -1,63 +1,65 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="p-4 mt-5 flex justify-around">
-        <h1 class="mb-5">{{ __("LISTADO DE CANCIONES") }}</h1>
-        <a href="{{ route('songs.create') }}" class="bg-transparent hover:bg-yellow-500 text-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded">
-            {{ __("Añadir canción") }}
-        </a>
-    </div>
 
-    <table class="border-separate border-2 text-center border-gray-500 mt-3" style="width: 75%; margin: auto; border-color: #e3a008;">
-        <thead>
-        <tr style="background: #e3a008; color: white;">
-            <th class="px-4 py-2">{{ __("Id") }}</th>
-            <th class="px-4 py-2">{{ __("Grupo") }}</th>
-            <th class="px-4 py-2">{{ __("Nombre") }}</th>
-            <th class="px-4 py-2">{{ __("Acciones") }}</th>
-            <th class="px-4 py-2">{{ __("Usuario") }}</th>
+<style>
+
+    #tabla_reservas_wrapper {
+        
+        width: 50%;
+
+    }
+
+</style>
+
+<div class="espacio"></div>
+<h1 class="titulo fs-1">Reservas</h1>
+<div class="borde"></div>
+<table id="tabla_reservas" class="table table-dark table-hover table-bordered text-uppercase text-light mx-auto" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="th-sm">RESERVA Nº</th>
+            <th class="th-sm">USUARIO</th>
+            <th class="th-sm">ACTIVIDAD</th>
+            <th class="th-sm">DÍA</th>
+            <th class="th-sm">HORA</th>
+            @if(Auth::user()->hasroles('admin'))
+                <th class="th-sm">PLAZAS</th>
+                <th class="th-sm">ACCIONES</th>
+            @endif 
         </tr>
-        </thead>
-        <tbody>
-            @forelse($songs as $song)
-                <tr>
-                    <td class="border px-4 py-2" style="background: #f9c64f; color: white;">{{ $song->id }}</td>
-                    <td class="border px-4 py-2">{{ $song->group->name }}</td>
-                    <td class="border px-4 py-2">{{ $song->name }}</td>
-                    <td class="border px-4 py-2">
-                        <a href="{{ route('songs.edit', ['song' => $song]) }}" class="text-yellow-400">{{ __("Editar") }}</a> |
-                        <a
-                            href="#"
-                            class="text-red-400"
-                            onclick="event.preventDefault();
-                                document.getElementById('delete-song-{{ $song->id }}-form').submit();"
-                        >{{ __("Eliminar") }}
-                        </a>
-                        <form id="delete-song-{{ $song->id }}-form" action="{{ route('songs.destroy', ['song' => $song]) }}" method="POST" class="hidden">
-                            @method("DELETE")
-                            @csrf
-                        </form>
-                    </td>
-                    <td class="border px-4 py-2">{{ $song->user->name }}</td>
-                </tr>
+    </thead>
+    <tbody>
+        @forelse($reservations as $reservation)
+            <tr>
+                <td class="text-light">{{ $reservation->id }}</td>
+                <td class="text-light">{{ $reservation->user->name }}</td>
+                <td class="text-light">{{ $reservation->hour->act_id }}</td>
+                <td class="text-light">{{ $reservation->hour_id }}</td>
+                <td class="text-light">{{ $reservation->hour_id }}</td>
+                @if(Auth::user()->hasroles('admin'))
+                    <td class="text-light">{{ $reservation->hour_id }}</td>
+                    <td><a href="{{ route('reservations.edit', ['reservation' => $reservation]) }}" class="btn btn-outline-warning mx-2">EDITAR</a>
+                        <a href="{{ route('reservations.destroy', ['reservation' => $reservation]) }}" class="btn btn-outline-warning mx-2">ELIMINAR</a></td>
+                @endif
+            </tr>
             @empty
-                <tr>
-                    <td colspan="4">
-                        <div class="bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                            <p><strong class="font-bold">{{ __("No hay canciones") }}</strong></p>
-                            <span class="block sm:inline">{{ __("Todavía no hay nada que mostrar aquí") }}</span>
-                        </div>
-                    </td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
- 
-  @if($songs->count())
-        <div class="mt-3" style="margin-top: 2em; margin-left: 15em;">
-            {{ $songs->links() }}
-           
-        </div>
-    @endif
+                <p>Todavía no se ha realizado ninguna reserva.</p>
+            @endforelse
+    </tbody>
+</table>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#tabla_reservas').DataTable();
+
+        $('.dataTables_length').addClass('bs-select');
+
+    });
+
+</script>
 
 @endsection

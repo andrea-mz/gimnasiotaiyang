@@ -24,8 +24,18 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations=Reservation::paginate(10);
+        if(Auth::user()->hasRoles('admin')) {
 
+            $reservations=Reservation::with('user', 'hour')->get();
+
+        }
+            
+        else {
+
+            $reservations=Auth::user()->projects()->get();
+
+        }
+            
         return view("reservations.index", compact("reservations"));
     }
 

@@ -20,7 +20,7 @@ class Reservation extends Model
 
     }
 
-    public function hours() {
+    public function hour() {
 
         return $this->belongsTo(Hour::class);
 

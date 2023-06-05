@@ -10,10 +10,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300$display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Anek Tamil' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <title>Gimnasio 太阳</title>
     <link rel="icon" href="{{asset('images/logo/logo.ico')}}">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.map"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.slim.js" integrity="sha512-JC/KiiKXoc40I1lqZUnoRQr96y5/q4Wxrq5w+WKqbg/6Aq0ivpS2oZ24x/aEtTRwxahZ/KOApxy8BSZOeLXMiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.slim.min.js" integrity="sha512-5NqgLBAYtvRsyAzAvEBWhaW+NoB+vARl6QiA02AFMhCWvPpi7RWResDcTGYvQtzsHVCfiUhwvsijP+3ixUk1xw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.slim.min.map"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <header class="px-2 py-3 row justify-content-center align-items-center">
@@ -25,6 +35,11 @@
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
 
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
+                    @guest
+
+                    @else
+                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
+                    @endguest
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
                 <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
                 <li class="ms-2 me-1 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">

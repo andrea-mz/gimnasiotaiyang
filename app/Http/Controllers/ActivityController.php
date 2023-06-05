@@ -22,7 +22,7 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activities=Activity::paginate(10);
+        $activities=Activity::all();
 
         return view("activities.index", compact("activities"));
     }
@@ -88,7 +88,6 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //dd($activity);
         $update = true;
         $title = __("Editar actividad");
         $textButton = __("Actualizar");
