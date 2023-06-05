@@ -27,13 +27,13 @@
             @enderror
         </div>
         <div class="col-6">
-            <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3 text-end" for="imagen">
+            <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3 text-end" for="image">
                 {{ __("Imagen") }}
             </label>
             @if (isset($activity->image))
                 <img src="{{asset('images/'.$activity->image)}}" style="max height: 100px; width:auto;">
             @endif
-                <input type="file" name="imagen" class="form-control" placeholder="Imagen">
+                <input type="file" name="image" class="form-control" placeholder="Imagen" id="image">
             @error("image")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}

@@ -5,8 +5,16 @@
 <style>
 
     #tabla_reservas_wrapper {
-        
+
         width: 50%;
+        margin: auto;
+        color: white;
+
+    }
+
+    #tabla_reservas_length label select option {
+
+        color: black;
 
     }
 
@@ -26,7 +34,7 @@
             @if(Auth::user()->hasroles('admin'))
                 <th class="th-sm">PLAZAS</th>
                 <th class="th-sm">ACCIONES</th>
-            @endif 
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -54,7 +62,13 @@
 
     $(document).ready(function () {
 
-        $('#tabla_reservas').DataTable();
+        $('#tabla_reservas').DataTable({
+
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+            },
+
+        });
 
         $('.dataTables_length').addClass('bs-select');
 

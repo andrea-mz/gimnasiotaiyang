@@ -18,6 +18,7 @@ class CreateActivitiesTable extends Migration
             $table->string('shortname')->unique();
             $table->string('name')->unique();
             $table->string('image')->unique();
+            $table->timestamps();
         });
     }
 

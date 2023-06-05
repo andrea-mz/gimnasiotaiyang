@@ -50,28 +50,20 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             "shortname" => "required|max:3|unique:activities",
             "name" => "required|max:40",
             "image" => "required|image|mimes:jpg,gif,png,jpeg!"
 
         ]);
-        // $user=Auth::user()->id;
-        //  dd($user);
-        // $activity = Activity::make(
-        //     $request->only("shortname","name", "image")
-        // );
-        // $activity->user_id = Auth::user()->id;
-        // $activity->save();
 
         $file=$request->file('image');
 
         Activity::create(
             array_merge(
-                $request->only("shortname", "name"),
-                [
-                    "image" => $file->storeAs('', uniqid(),"-".$file->getClientOriginalName(),'images'), //request->file('image')->store('','images'),
-                    "user_id" => Auth::user()->id
+                $request->only("shortname", "name"), [
+                    "image"=>$file->storeAs('',uniqid()."-".$file->getClientOriginalName(),'images')
                 ]
             )
         );

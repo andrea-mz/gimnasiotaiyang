@@ -34,35 +34,9 @@ Route::get('/company', [ContactaController::class, 'company'])->name('company');
 
 Route::get('/error', [HomeController::class, 'error'])->name('error.index');
 
-/*Route::get('/contacto', function () {
-    return ("Visualizando texto");
-});
-
-Route::get('/contacto/{id}', function ($id) {
-    return 'Contacto: '.$id;
-});
-
-Route::get('user/{id?}', function($id=’invitado’) {
-    return 'Contacto: '.$id;
-});*/
-
 Route::resource('activities', ActivityController::class);
 
 Route::resource('reservations', ReservationController::class);
-
-// Route::resource('reservations', ReservationController::class)
-//         ->missing(function (Activity $activity) {
-//             return Redirect::route('reservations.create');
-//         });
-
-// Route::get('{activity}/reservations/create/', [ReservationController::class, 'create'])->name('reservations.crear');
-// Route::get('/reservations/store/', [ReservationController::class, 'store'])->name('reservations.store');
-
-/*Route::get('contacta', function() {
-    $correo=new ContactaMail;
-    Mail::to('cow77728@educastur.es')->send($correo);
-    return ("mensaje enviado");
-});*/
 
 Route::get('contacta',[ContactaController::class,'index'])->name('contacta.index');
 

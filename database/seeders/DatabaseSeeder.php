@@ -108,6 +108,8 @@ class DatabaseSeeder extends Seeder
                 'shortname'=>$short[$i],
                 'name'=>$nombres[$i],
                 'image'=>$imagenes[$i],
+                'created_at'=>date("Y-m-d h:i:s"),
+                'updated_at'=>date("Y-m-d h:i:s"),
             ]);
 
         }
