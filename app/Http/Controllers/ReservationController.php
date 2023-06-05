@@ -41,7 +41,7 @@ class ReservationController extends Controller
         $hours = Hour::get_hours_by_act($_GET["activity"]);
         $reservation = new Reservation;
         $title = __("Crear Reserva");
-        $textButton = __("Crear");
+        $textButton = __("Reservar");
         $route = route("reservations.store");
         //dd($hours);
         return view("reservations.create", compact("title", "textButton", "route", "reservation", "activity", "hours"));

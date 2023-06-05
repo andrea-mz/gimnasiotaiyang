@@ -1,4 +1,20 @@
-<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">    
+<style>
+
+.input_hora:checked + .label_hora {
+
+    background-color: orange !important;
+
+}
+
+.input_hora:checked + .label_hora h1 {
+
+    color: black !important;
+
+}
+
+</style>
+
+<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">
 @csrf
     @isset($update)
         @method("PUT")
@@ -6,22 +22,21 @@
     <h1 class="my-5 titulo fs-1">{{ $title }}</h1>
     <div class="borde"></div>
     <div class="mt-5 mx-auto justify-content-center">
-        <h1 class="text-uppercase text-center text-light fs-3 mb-5">ACTIVIDAD SELECCIONADA: <span id="actividad_seleccionada" class="text-warning"></span></h1>
-        <div class="d-flex">
+        <h1 class="text-uppercase text-center text-light fs-3 mb-5">ACTIVIDAD: <span id="actividad_seleccionada" class="text-warning"></span></h1>
+        <div class="row w-50 mx-auto">
             @forelse($hours as $hour)
-                <div class="card p-0 bg-dark">
-                    <h1 class="text-uppercase text-center text-light">{{ $hour->day_of_the_week }}</h1>
-                    <h1 class="text-uppercase text-center text-light">{{ $hour->hour }}</h1>
-                </div>
+                <input type="checkbox" id="hora_{{ $hour->id }}" value="{{ $hour->id }}" class="input_hora d-none">
+                    <label for="hora_{{ $hour->id }}" class="card p-0 bg-dark col label_hora">
+                        <h1 class="text-uppercase text-center text-light fs-4 py-2">{{ $hour->day_of_the_week }}</h1>
+                        <h1 class="text-uppercase text-center text-light fs-5 py-2">{{ $hour->hour }}</h1>
+                    </label>
             @empty
                 <div class="card p-0 bg-dark">
                     <h1 class="text-uppercase text-center text-light">{{ ("No hay horas disponibles para esta actividad.") }}</h1>
                 </div>
             @endforelse
-        </div>
-        <div class="md:flex md:items-center">
-            <div class="md:w-1/3">
-                <button class="shadow bg-yellow-400 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+            <div class="mt-5 d-flex justify-content-end">
+                <button class="shadow bg-yellow-400 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded " type="submit">
                     {{ $textButton }}
                 </button>
             </div>
