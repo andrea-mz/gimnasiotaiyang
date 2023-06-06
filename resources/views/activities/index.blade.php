@@ -2,7 +2,6 @@
 
 @section("content")
 
-<div class="espacio"></div>
 <h1 class="titulo fs-1">Actividades</h1>
 @guest
 @else

@@ -48,7 +48,7 @@ header .logo a img {
 
 .espacio {
 
-    height: 150px;
+    height: 120px;
 
 }
 
@@ -100,7 +100,7 @@ header .logo a img {
     grid-template-columns: repeat(3, 1fr);
 
 }
-    
+
 #galeria .card:hover img {
 
     opacity: 0.3;

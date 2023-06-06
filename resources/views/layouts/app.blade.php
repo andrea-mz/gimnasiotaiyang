@@ -61,6 +61,10 @@
         </nav>
     </header>
     <main class="py-4">
+        <div class="espacio"></div>
+        @if(session("success"))
+            <p class="titulo py-3 mb-5 bg-warning text-white">{{ session("success") }}</p>
+        @endif
         @yield('content')
     </main>
     <footer class="mt-5">

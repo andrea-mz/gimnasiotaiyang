@@ -1,7 +1,6 @@
 @extends("layouts.app")
 
 @section("content")
-<div class="espacio"></div>
 <h1 class="titulo fs-1">Gimnasio de Oviedo</h1>
 <div class="borde"></div>
 <section class="row ps-5 pe-0 w-100">

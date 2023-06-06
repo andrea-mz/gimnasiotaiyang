@@ -19,9 +19,15 @@ class Hour extends Model
 
     }
 
+    public function activity() {
+
+        return $this->belongsTo(Activity::class);
+
+    }
+
     public static function get_hours_by_act($activity) {
 
-        return DB::table('hours')->where('act_id', $activity)->get();
+        return DB::table('hours')->where('act_id', $activity)->orderBy('day_of_the_week', 'asc')->get();
 
     }
 

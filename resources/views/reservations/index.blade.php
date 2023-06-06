@@ -20,7 +20,6 @@
 
 </style>
 
-<div class="espacio"></div>
 <h1 class="titulo fs-1">Reservas</h1>
 <div class="borde"></div>
 <table id="tabla_reservas" class="table table-dark table-hover table-bordered text-uppercase text-light mx-auto" cellspacing="0">
@@ -43,10 +42,10 @@
                 <td class="text-light">{{ $reservation->id }}</td>
                 <td class="text-light">{{ $reservation->user->name }}</td>
                 <td class="text-light">{{ $reservation->hour->act_id }}</td>
-                <td class="text-light">{{ $reservation->hour_id }}</td>
-                <td class="text-light">{{ $reservation->hour_id }}</td>
+                <td class="text-light">{{ $reservation->hour->day_of_the_week }}</td>
+                <td class="text-light">{{ $reservation->hour->hour }}</td>
                 @if(Auth::user()->hasroles('admin'))
-                    <td class="text-light">{{ $reservation->hour_id }}</td>
+                    <td class="text-light">{{ $reservation->hour->reserved_places }}/{{ $reservation->hour->available_places }}</td>
                     <td><a href="{{ route('reservations.edit', ['reservation' => $reservation]) }}" class="btn btn-outline-warning mx-2">EDITAR</a>
                         <a href="{{ route('reservations.destroy', ['reservation' => $reservation]) }}" class="btn btn-outline-warning mx-2">ELIMINAR</a></td>
                 @endif

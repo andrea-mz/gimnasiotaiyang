@@ -14,7 +14,7 @@
 
 </style>
 
-<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">
+<form class="w-100" method="POST" action="{{ $route }}">
 @csrf
     @isset($update)
         @method("PUT")
@@ -25,7 +25,7 @@
         <h1 class="text-uppercase text-center text-light fs-3 mb-5">ACTIVIDAD: <span id="actividad_seleccionada" class="text-warning"></span></h1>
         <div class="row w-50 mx-auto">
             @forelse($hours as $hour)
-                <input type="checkbox" id="hora_{{ $hour->id }}" value="{{ $hour->id }}" class="input_hora d-none">
+                <input type="checkbox" id="hora_{{ $hour->id }}" value="{{ $hour->id }}" class="input_hora d-none" name="hour_id[]">
                     <label for="hora_{{ $hour->id }}" class="card p-0 bg-dark col label_hora">
                         <h1 class="text-uppercase text-center text-light fs-4 py-2">{{ $hour->day_of_the_week }}</h1>
                         <h1 class="text-uppercase text-center text-light fs-5 py-2">{{ $hour->hour }}</h1>

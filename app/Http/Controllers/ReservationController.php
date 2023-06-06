@@ -29,13 +29,13 @@ class ReservationController extends Controller
             $reservations=Reservation::with('user', 'hour')->get();
 
         }
-            
+
         else {
 
-            $reservations=Auth::user()->projects()->get();
+            $reservations=Auth::user()->reservations()->get();
 
         }
-            
+
         return view("reservations.index", compact("reservations"));
     }
 
@@ -68,15 +68,15 @@ class ReservationController extends Controller
         $this->validate($request, [
             "user_id" => "required",
             "hour_id" => "required",
-
         ]);
-       // $user=Auth::user()->id;
-      //  dd($user);
-        $reservation = Reservation::make(
-            $request->only("user_id", "hour_id")
-        );
-        $reservation->user_id = Auth::user()->id;
-        $reservation->save();
+
+        dd($request);
+
+        // $reservation = Reservation::make(
+        //     $request->only("user_id", "hour_id")
+        // );
+        // $reservation->user_id = Auth::user()->id;
+        // $reservation->save();
 
         return redirect(route("reservations.index"))
             ->with("success", __("¡Reserva creada correctamente!"));

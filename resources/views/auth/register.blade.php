@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="espacio"></div>
 <h1 class="titulo mb-5 fs-1">Registro de Usuario</h1>
     <form action="POST" action="{{ route('register') }}" class="login text-white fs-3 row mx-auto flex-column border border-5 border-white p-3">
         @csrf

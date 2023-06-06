@@ -58,14 +58,12 @@ class ActivityController extends Controller
         ]);
 
         $file=$request->file('image');
-        // $name = $file->getClientOriginalName();
-        // $extension = $file->getClientOriginalExtension();
-        
+
         Activity::create(
             array_merge(
                 $request->only("name"), [
                     "shortname"=> $request->shortname,
-                    "image"=>'act/'.$file->storeAs($file->getClientOriginalName(),'images')
+                    "image"=>$file->storeAs('act/'.$file->getClientOriginalName(),'images')
                 ]
             )
         );
@@ -107,12 +105,12 @@ class ActivityController extends Controller
 
         if($request->hasFile('image')){
             Storage::disk('images')->delete(''.$activity->image);
-            $activity->image='act/'.$request->file('image')->storeAs($request->file('image')->getClientOriginalName(),'images');
+            $activity->image=$request->file('image')->storeAs('act/'.$request->file('image')->getClientOriginalName(),'images');
         }
-        
+
         $activity->save();
 
-        return back()->with("success", __("¡Actividad actualizada correctamente!"));
+        return redirect(route("activities.index"))->with("success", __("¡Actividad actualizada correctamente!"));
     }
 
     /**
