@@ -10,7 +10,7 @@
             <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3" for="shortname">
                 {{ __("Abreviatura") }}
             </label>
-            <input name="shortname" value="{{ old('shortname') ?? $activity->shortname }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="shortname" type="text">
+            <input name="shortname" value="{{ old('shortname') ?? $activity->shortname }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-uppercase" id="shortname" type="text" maxlength="3">
             @error("shortname")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}

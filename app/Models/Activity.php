@@ -12,7 +12,7 @@ class Activity extends Model
 
     use HasFactory;
 
-    protected $fillable=['name'];
+    protected $fillable=['shortname', 'name', 'image'];
 
     public function hours() {
 
