@@ -31,4 +31,10 @@ class Hour extends Model
 
     }
 
+    public static function get_act_by_id($id) {
+
+        return DB::table('hours')->where('id', $id)->get();
+
+    }
+
 }

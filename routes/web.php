@@ -34,9 +34,11 @@ Route::get('/company', [ContactaController::class, 'company'])->name('company');
 
 Route::get('/error', [HomeController::class, 'error'])->name('error.index');
 
-Route::resource('activities', ActivityController::class);
+Route::resource('/activities', ActivityController::class);
 
-Route::resource('reservations', ReservationController::class);
+Route::resource('/reservations', ReservationController::class)->except(['store']);
+
+Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
 
 Route::get('contacta',[ContactaController::class,'index'])->name('contacta.index');
 

@@ -78,7 +78,7 @@ class ReservationController extends Controller
         // $reservation->user_id = Auth::user()->id;
         // $reservation->save();
 
-        return redirect(route("reservations.index"))
+        return redirect(route("activities.index"))
             ->with("success", __("¡Reserva creada correctamente!"));
     }
 
@@ -90,11 +90,13 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        $activity = Hour::get_act_by_id($reservation->hour_id);
+        $hours = Hour::get_hours_by_act($activity[0]->act_id);
         $update = true;
         $title = __("Editar reserva");
         $textButton = __("Actualizar");
         $route = route("reservations.update", ["reservation" => $reservation]);
-        return view("reservations.edit", compact("update", "title", "textButton", "route", "reservation"));
+        return view("reservations.edit", compact("update", "title", "textButton", "route", "reservation", "activity", "hours"));
     }
 
     /**

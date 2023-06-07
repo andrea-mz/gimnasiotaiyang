@@ -57,16 +57,15 @@ class ActivityController extends Controller
             "image" => "required|image|mimes:jpg,gif,png,jpeg!"
         ]);
 
-        $file=$request->file('image');
+        $activity = $request->all();
+        if($image = $request->file('image')) {
+            $rutaGuardarImg = 'images/act/';
+            $imageAct = 'act/'.$image->getClientOriginalName();
+            $image->move($rutaGuardarImg, $imageAct);
+            $activity['image'] = "$imageAct";             
+        }
 
-        Activity::create(
-            array_merge(
-                $request->only("name"), [
-                    "shortname"=> $request->shortname,
-                    "image"=>$file->storeAs('act/'.$file->getClientOriginalName(),'images')
-                ]
-            )
-        );
+        Activity::create($activity);
 
         return redirect(route("activities.index"))
             ->with("success", __("¡Actividad creada correctamente!"));
@@ -101,14 +100,26 @@ class ActivityController extends Controller
             "name" => "required",
         ]);
 
-        $activity->fill($request->only("shortname","name"));
+        // $activity->fill($request->only("shortname","name"));
 
-        if($request->hasFile('image')){
-            Storage::disk('images')->delete(''.$activity->image);
-            $activity->image=$request->file('image')->storeAs('act/'.$request->file('image')->getClientOriginalName(),'images');
+        // if($request->hasFile('image')){
+        //     Storage::disk('images')->delete(''.$activity->image);
+        //     $activity->image=$request->file('image')->storeAs('act/'.$request->file('image')->getClientOriginalName(),'images');
+        // }
+
+        // $activity->save();
+
+        $act = $request->all();
+        if($image = $request->file('image')) {
+            $rutaGuardarImg = 'images/act/';
+            $imageAct = 'act/'.$image->getClientOriginalName();
+            $image->move($rutaGuardarImg, $imageAct);
+            $act['image'] = "$imageAct";             
+        }else{
+           unset($act['image']);
         }
 
-        $activity->save();
+        $activity->update($act);
 
         return redirect(route("activities.index"))->with("success", __("¡Actividad actualizada correctamente!"));
     }
@@ -122,6 +133,7 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         $activity->delete();
-        return back()->with("success", __("¡Actividad eliminada correctamente!"));
+        return redirect(route("activities.index"))->with("success", __("¡Actividad eliminada correctamente!"));
     }
+
 }

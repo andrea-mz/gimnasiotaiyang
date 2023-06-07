@@ -21,13 +21,19 @@
             </div>
             <div class="mt-3 d-flex justify-content-center">
                 @guest
+                    <a href="{{ route('reservations.create', ['activity' => $activity]) }}" class="btn btn-outline-warning mx-2">RESERVAR</a>
                 @else
                 @if(Auth::user()->hasroles('admin'))
                     <a href="{{ route('activities.edit', ['activity' => $activity]) }}" class="btn btn-outline-warning mx-2">EDITAR</a>
-                    <a href="{{ route('activities.destroy', ['activity' => $activity]) }}" class="btn btn-outline-warning mx-2">ELIMINAR</a>
+                    <form action="{{ route('activities.destroy', $activity->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-warning mx-2">ELIMINAR</button>
+                    </form>
+                @else
+                    <a href="{{ route('reservations.create', ['activity' => $activity]) }}" class="btn btn-outline-warning mx-2">RESERVAR</a>
                 @endif
                 @endguest
-                <a href="{{ route('reservations.create', ['activity' => $activity]) }}" class="btn btn-outline-warning mx-2">RESERVAR</a>
             </div>
         </div>
     @empty
