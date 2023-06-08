@@ -93,11 +93,14 @@ class ReservationController extends Controller
 
         $activities=Activity::all();
         $old_activity=Activity::get_activity_by_id((Hour::get_act_by_id($reservation->hour_id))[0]->act_id);
+        $hours=Hour::all();
+        $hour=Hour::get_hours_by_act($old_activity[0]->id);
+        $old_hour=Hour::find($reservation->hour_id);
         $update = true;
         $title = __("Editar reserva");
         $textButton = __("Actualizar");
         $route = route("reservations.update", ["reservation" => $reservation]);
-        return view("reservations.edit", compact("update", "title", "textButton", "route", "reservation", "activities", "old_activity"));
+        return view("reservations.edit", compact("update", "title", "textButton", "route", "reservation", "activities", "old_activity", "hours", "hour", "old_hour"));
     }
 
     /**

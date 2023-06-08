@@ -11,14 +11,10 @@
             {{ __("Actividad") }}
         </label>
         <select name="activity" id="activity">
-            @forelse($old_activity as $old)
-                <option value="{{ $old->id }}">{{ $old->name }}</option>
-            @empty
-            @endforelse
             @forelse($activities as $act)
                 <option value="{{ $act->id }}">{{ $act->name }}</option>
             @empty
-                <option class="text-uppercase text-center text-light">{{ ("No hay actividades disponibles.") }}</option>
+                <option value="none">{{ ("No hay actividades disponibles.") }}</option>
             @endforelse
         </select>
         @error("activity")
@@ -30,14 +26,10 @@
             {{ __("Hora") }}
         </label>
         <select name="hour" id="hour">
-            @forelse($old_activity as $old)
-                <option value="{{ $old->id }}">{{ $old->name }}</option>
+            @forelse($hour as $hour)
+                <option value="{{ $hour->id }}">{{ $hour->day_of_the_week }} | {{ $hour->hour }}</option>
             @empty
-            @endforelse
-            @forelse($activities as $act)
-                <option value="{{ $act->id }}">{{ $act->name }}</option>
-            @empty
-                <option class="text-uppercase text-center text-light">{{ ("No hay actividades disponibles.") }}</option>
+                <option value="none">{{ ("No hay horas disponibles para esta actividad.") }}</option>
             @endforelse
         </select>
         @error("activity")
@@ -54,6 +46,43 @@
         </div>
     </div>
 </form>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#activity").val(<?php echo $old_activity[0]->id ?>);
+
+        $("#hour").val(<?php echo $old_hour->id ?>);
+
+        $("#activity").on("change", () => {
+
+            hours=<?php echo $hours ?>;
+            save=[];
+
+            for(i=0;i<hours.length;i++) {
+
+                if(hours[i].act_id==$('#activity').val()) {
+
+                    save[i]=hours[i].day_of_the_week+' | '+hours[i].hour;
+
+                }
+
+            }
+
+            $("#hour").innerHTML=' ';
+
+            for(j=0;j<save.length;j++) {
+
+                $("#hour").append('<option value="'+j+'">'+save[j]+'</option>');
+
+            }
+        
+        });
+
+    });
+
+</script>
 
 @endsection
 
