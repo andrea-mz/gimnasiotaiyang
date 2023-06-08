@@ -14,8 +14,8 @@
 
 </style>
 
-<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">
-{{ method_field('post')}}
+<form class="w-100" method="STORE" action="{{ $route }}" enctype="multipart/form-data">
+{{ method_field('store')}}
 @csrf
     @isset($update)
         @method("PUT")
