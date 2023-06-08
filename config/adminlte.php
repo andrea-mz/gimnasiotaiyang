@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'AdminLTE 3',
-    'title_prefix' => 'KPOP Project |',
+    'title_prefix' => 'GimnasioTAIYANG |',
     'title_postfix' => '', //| ProyectosCPY
 
     /*
@@ -331,15 +331,15 @@ return [
             'icon'       => 'fas fa-fw fa-lock',
         ],
 
-        ['header' => 'KPOP'],
+        ['header' => 'TAIYANG'],
         [
-            'text'       => 'Listado de Grupos',
-            'url'        => 'admin/list_groups',
+            'text'       => 'Listado de Actividades',
+            'url'        => 'admin/list_activities',
             'icon' => 'far fa-fw fa-heart',
         ],
         [
-            'text'       => 'Listado de Canciones',
-            'url'        => 'admin/list_songs',
+            'text'       => 'Listado de Reservas',
+            'url'        => 'admin/list_reservations',
             'icon' => 'far fa-fw fa fa-play',
         ]
         ],

@@ -32,31 +32,26 @@
         </div>
         <nav class="menu mt-4 col-xl-9 col-md-9">
             <ul class="d-flex fs-4 list-unstyled justify-content-end">
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
-
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
-                    @guest
-
-                    @else
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
-                    @endguest
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
-                <li class="ms-2 me-1 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    </svg>
-                </a></li>
-                    @guest
-
-                    @else
-                <li class="me-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">{{ Auth::user()->name }}</a></li>
-                <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
+                @auth
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
+                @endauth
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
+                    <li class="ms-2 me-1 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </a></li>
+                @auth
+                    <li class="me-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">{{ Auth::user()->name }}</a></li>
+                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
-                    @endguest
+                @endauth
             </ul>
         </nav>
     </header>

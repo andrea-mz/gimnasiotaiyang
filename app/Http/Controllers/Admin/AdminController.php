@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\Group;
-use App\Models\Song;
+use App\Models\Activity;
+use App\Models\Reservation;
 
 class AdminController extends Controller
 {
@@ -18,14 +18,14 @@ class AdminController extends Controller
         $this->middleware("auth");
 
     }
-    
+
     public function index() {
 
-        if(Auth::user()->hasroles('admin'))         
+        if(Auth::user()->hasroles('admin'))
             return view('auth.admin.index');
-        else 
+        else
             return view('error.index');
-            
+
     }
 
     public function list_users() {
@@ -36,45 +36,44 @@ class AdminController extends Controller
             return view('auth.admin.list_users', compact('users'));
 
         }
-        
+
     }
-    
-    public function list_groups() {
+
+    public function list_activities() {
 
         if(Auth::user()->hasroles('admin')) {
 
-            $groups=Group::all();
-            return view("auth.admin.list_groups", compact("groups"));
+            $activities=Activity::all();
+            return view("auth.admin.list_activities", compact("groups"));
 
         }
-        
+
     }
 
-    public function list_songs() {
+    public function list_reservations() {
 
         if(Auth::user()->hasroles('admin')) {
 
-            $songs=Song::all();
-            return view("auth.admin.list_songs", compact("songs"));
+            $reservations=Reservation::all();
+            return view("auth.admin.list_reservations", compact("songs"));
 
         }
-        
+
     }
 
-    public function create_groups() {
+    public function create_activities() {
 
         if(Auth::user()->hasroles('admin')) {
 
-            $project=new Project;
-            $title=__("Crear proyecto");
+            $activity=new Activity;
+            $title=__("Crear actividad");
             $textButton=__("Crear");
-            $route=route("projects.store");
-            //dd($route);
-            return view("auth.admin.create_projects", compact("project"));
+            $route=route("activities.store");
+            return view("auth.admin.create_activities", compact("activity"));
 
         }
-        
+
 
     }
-    
+
 }

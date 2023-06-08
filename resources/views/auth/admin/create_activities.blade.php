@@ -3,7 +3,7 @@
 @section('title','Panel Admin')
 
 @section('content_header')
-    <h1>Crear proyecto</h1>
+    <h1>Crear actividad</h1>
 @stop
 
 @section('content')

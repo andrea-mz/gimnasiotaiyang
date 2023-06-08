@@ -143,27 +143,27 @@ class DatabaseSeeder extends Seeder
         ];
 
         $dias_semana=[
-            "Viernes",
-            "Miércoles",
+            "Lunes",
+            "Lunes",
             "Lunes",
             "Martes",
-            "Viernes",
+            "Martes",
+            "Martes",
+            "Miércoles",
+            "Miércoles",
+            "Miércoles",
+            "Miércoles",
             "Jueves",
-            "Martes",
-            "Lunes",
-            "Martes",
-            "Miércoles",
             "Jueves",
-            "Lunes",
-            "Martes",
+            "Jueves",
             "Viernes",
-            "Lunes",
-            "Martes",
-            "Miércoles",
-            "Lunes",
             "Viernes",
-            "Miércoles",
-            "Jueves"
+            "Viernes",
+            "Viernes",
+            "Sábado",
+            "Sábado",
+            "Sábado",
+            "Domingo"
         ];
 
         $horas=[

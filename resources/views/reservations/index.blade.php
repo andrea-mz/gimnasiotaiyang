@@ -41,7 +41,7 @@
             <tr>
                 <td class="text-light">{{ $reservation->id }}</td>
                 <td class="text-light">{{ $reservation->user->name }}</td>
-                <td class="text-light">{{ $reservation->hour->act_id }}</td>
+                <td class="text-light nombre_act" id="{{ $reservation->hour->act_id }}">{{ $reservation->hour->act_id }}</td>
                 <td class="text-light">{{ $reservation->hour->day_of_the_week }}</td>
                 <td class="text-light">{{ $reservation->hour->hour }}</td>
                 @if(Auth::user()->hasroles('admin'))
@@ -66,10 +66,25 @@
     </tbody>
 </table>
 
-
 <script>
 
     $(document).ready(function () {
+
+        activities=(<?php echo $activities ?>);
+
+        for(i=0;i<$('.nombre_act').length;i++) {
+
+            cont=0;
+
+            while($('.nombre_act')[i].id!=activities[cont].id) {
+
+                cont++;
+
+            }
+
+            $('.nombre_act')[i].innerHTML=activities[cont].shortname;
+
+        }
 
         $('#tabla_reservas').DataTable({
 
@@ -95,6 +110,8 @@
         });
 
         $('.dataTables_length').addClass('bs-select');
+
+
 
     });
 

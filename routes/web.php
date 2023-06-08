@@ -44,6 +44,8 @@ Route::get('contacta',[ContactaController::class,'index'])->name('contacta.index
 
 Route::post('contacta',[ContactaController::class,'store'])->name('contacta.store');
 
+Route::resource('users', UserController::class);
+
 //Route::get('admin',[HomeController::class,'index'])->name('admin.index');
 
 //Route::get('admin/list_users',[HomeController::class,'list_users'])->name('admin.list_users');

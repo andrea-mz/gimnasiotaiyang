@@ -27,16 +27,18 @@ class ReservationController extends Controller
         if(Auth::user()->hasRoles('admin')) {
 
             $reservations=Reservation::with('user', 'hour')->get();
+            $activities=Activity::all();
 
         }
 
         else {
 
             $reservations=Auth::user()->reservations()->get();
+            $activities=Activity::all();
 
         }
 
-        return view("reservations.index", compact("reservations"));
+        return view("reservations.index", compact("reservations", "activities"));
     }
 
     /**
@@ -53,7 +55,6 @@ class ReservationController extends Controller
         $title = __("Crear Reserva");
         $textButton = __("Reservar");
         $route = route("reservations.store");
-        //dd($hours);
         return view("reservations.create", compact("title", "textButton", "route", "reservation", "activity", "hours"));
     }
 
@@ -70,13 +71,13 @@ class ReservationController extends Controller
             "hour_id" => "required",
         ]);
 
-        dd($request);
+        //dd($request);
 
-        // $reservation = Reservation::make(
-        //     $request->only("user_id", "hour_id")
-        // );
-        // $reservation->user_id = Auth::user()->id;
-        // $reservation->save();
+        $reservation = Reservation::make(
+            $request->only("user_id", "hour_id")
+        );
+        $reservation->user_id = Auth::user()->id;
+        $reservation->save();
 
         return redirect(route("activities.index"))
             ->with("success", __("¡Reserva creada correctamente!"));
@@ -113,7 +114,7 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $this->validate($request, [
-            "user_id" => "required" . $reservation->id,
+            // "user_id" => "required" . $reservation->id,
             "hour_id" => "required",
         ]);
         $reservation->fill($request->only("user_id", "hour_id"))->save();
