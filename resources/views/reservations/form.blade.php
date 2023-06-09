@@ -12,10 +12,15 @@
 
 }
 
+.input_hora:disabled + .label_hora {
+
+    background-color: #2b2b2b !important;
+
+}
+
 </style>
 
-<form class="w-100" method="STORE" action="{{ $route }}" enctype="multipart/form-data">
-{{ method_field('store')}}
+<form class="w-100" method="POST" action="{{ $route }}">
 @csrf
     @isset($update)
         @method("PUT")
@@ -26,10 +31,11 @@
         <h1 class="text-uppercase text-center text-light fs-3 mb-5">ACTIVIDAD: <span id="actividad_seleccionada" class="text-warning"></span></h1>
         <div class="row w-50 mx-auto">
             @forelse($hours as $hour)
-                <input type="checkbox" id="hora_{{ $hour->id }}" value="{{ $hour->id }}" class="input_hora d-none" name="hour_id_{{ $hour->id }}">
+                <input type="checkbox" id="hora_{{ $hour->id }}" value="{{ $hour->id }}" class="input_hora hidden" name="hour_id[]">
                     <label for="hora_{{ $hour->id }}" class="card p-0 bg-dark col label_hora">
                         <h1 class="text-uppercase text-center text-light fs-4 py-2">{{ $hour->day_of_the_week }}</h1>
                         <h1 class="text-uppercase text-center text-light fs-5 py-2">{{ $hour->hour }}</h1>
+                        <h1 class="text-uppercase text-center text-light fs-5 py-2 plazas" id="{{ $hour->id }}"><span class="reservadas" id="{{ $hour->reserved_places }}">{{ $hour->reserved_places }} </span> / <span class="totales" id="{{ $hour->available_places }}">{{ $hour->available_places }}</span></h1>
                     </label>
             @empty
                 <div class="card p-0 bg-dark">
@@ -47,6 +53,24 @@
 
 <script>
 
-    document.querySelector("#actividad_seleccionada").innerHTML=<?php echo $activity ?>[0].name;
+    $('#actividad_seleccionada').html(<?php echo $activity ?>[0].name);
+
+    for(i=0;i<$('.plazas').length;i++) {
+
+        if($('.plazas .reservadas')[i].id==$('.plazas .totales')[i].id) {
+
+            for(j=0;j<$('.input_hora').length;j++) {
+
+                if($('.input_hora')[j].value==$('.label_hora .plazas')[i].id) {
+
+                    document.getElementsByClassName('input_hora')[j].disabled = true;
+
+                }
+
+            }
+
+        }
+
+    }
 
 </script>

@@ -44,7 +44,7 @@ class AdminController extends Controller
         if(Auth::user()->hasroles('admin')) {
 
             $activities=Activity::all();
-            return view("auth.admin.list_activities", compact("groups"));
+            return view("auth.admin.list_activities", compact("activities"));
 
         }
 
@@ -55,7 +55,7 @@ class AdminController extends Controller
         if(Auth::user()->hasroles('admin')) {
 
             $reservations=Reservation::all();
-            return view("auth.admin.list_reservations", compact("songs"));
+            return view("auth.admin.list_reservations", compact("reservations"));
 
         }
 

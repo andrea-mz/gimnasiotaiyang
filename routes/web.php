@@ -36,9 +36,23 @@ Route::get('/error', [HomeController::class, 'error'])->name('error.index');
 
 Route::resource('/activities', ActivityController::class);
 
-Route::resource('/reservations', ReservationController::class)->except(['store']);
+Route::resource('/reservations', ReservationController::class);
 
-Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
+// Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');->except(['store'])
+
+// Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+// Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+
+// Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+// Route::get('reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+
+// Route::put('reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
+
+// Route::get('reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
+
+// Route::delete('reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
 Route::get('contacta',[ContactaController::class,'index'])->name('contacta.index');
 
@@ -54,8 +68,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
     Route::get('/list_users',[AdminController::class,'list_users']);
-    Route::get('/list_groups',[AdminController::class,'list_groups']);
-    Route::get('/list_songs',[AdminController::class,'list_songs']);
+    Route::get('/list_activities',[AdminController::class,'list_activities']);
+    Route::get('/list_reservations',[AdminController::class,'list_reservations']);
     Route::get('/users/index',[UserController::class,'index'])->name('auth.admin.users.index');
     Route::get('/users/edit',[UserController::class,'edit'])->name('auth.admin.users.edit');
     Route::get('/users/update',[UserController::class,'update'])->name('auth.admin.users.update');

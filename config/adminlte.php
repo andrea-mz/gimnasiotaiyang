@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'AdminLTE 3',
-    'title_prefix' => 'GimnasioTAIYANG |',
+    'title_prefix' => 'GymTaiYang |',
     'title_postfix' => '', //| ProyectosCPY
 
     /*
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => 'Volver a <b>INICIO</b>',
+    'logo' => '<b>INICIO</b>',
     'logo_img' => 'vendor/adminlte/dist/img/images.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -319,7 +319,7 @@ return [
             'url'        => '#',
         ],*/
 
-        ['header' => 'Usuarios'],
+        ['header' => 'USUARIOS'],
         [
             'text'       => 'Listado de Usuarios',
             'url'        => 'admin/list_users',
@@ -331,7 +331,12 @@ return [
             'icon'       => 'fas fa-fw fa-lock',
         ],
 
-        ['header' => 'TAIYANG'],
+        ['header' => 'GYMTAIYANG'],
+        [
+            'text'       => 'Página Principal',
+            'url'        => '/',
+            'icon' => 'far fa-fw fa-circle',
+        ],
         [
             'text'       => 'Listado de Actividades',
             'url'        => 'admin/list_activities',

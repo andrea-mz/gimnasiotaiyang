@@ -71,14 +71,14 @@ class ReservationController extends Controller
             "hour_id" => "required",
         ]);
 
-        //dd($request);
+        dd($request);
 
-        $reservation = Reservation::make(
-            $request->only("user_id", "hour_id")
-        );
-        $reservation->user_id = Auth::user()->id;
-        $reservation->save();
-
+        // $reservation = Reservation::create(
+        //     $request->only("user_id", "hour_id")
+        // );
+        // $reservation->user_id = Auth::user()->id;
+        // $reservation->save();
+        //añadir uno a plazas reservadas
         return redirect(route("activities.index"))
             ->with("success", __("¡Reserva creada correctamente!"));
     }
@@ -91,7 +91,6 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-
         $activities=Activity::all();
         $old_activity=Activity::get_activity_by_id((Hour::get_act_by_id($reservation->hour_id))[0]->act_id);
         $hours=Hour::all();
@@ -118,6 +117,7 @@ class ReservationController extends Controller
             "hour_id" => "required",
         ]);
         $reservation->fill($request->only("user_id", "hour_id"))->save();
+        //quitar uno de plazas reservadas de la actividad anterior y añadir uno a la nueva actividad
         return back()->with("success", __("¡Reserva actualizada correctamente!"));
     }
 
@@ -130,6 +130,7 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
+        //quitar uno a plazas reservadas
         return back()->with("success", __("¡Reserva eliminada correctamente!"));
     }
 

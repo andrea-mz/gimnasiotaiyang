@@ -7,10 +7,10 @@
     <h1 class="my-5 titulo fs-1">{{ $title }}</h1>
     <div class="borde"></div>
     <div class="mt-5 mx-auto row justify-content-center w-25">
-        <label class="block uppercase tracking-wide text-light text-xs font-bold my-3" for="activity">
+        <label class="block uppercase tracking-wide text-light text-xs font-bold my-3" for="activity_id">
             {{ __("Actividad") }}
         </label>
-        <select name="activity" id="activity">
+        <select name="activity_id" id="activity_id">
             @forelse($activities as $act)
                 <option value="{{ $act->id }}">{{ $act->name }}</option>
             @empty
@@ -22,12 +22,16 @@
             {{ $message }}
         </div>
         @enderror
-        <label class="block uppercase tracking-wide text-light text-xs font-bold my-3" for="hour">
+        <label class="block uppercase tracking-wide text-light text-xs font-bold my-3" for="hour_id">
             {{ __("Hora") }}
         </label>
-        <select name="hour" id="hour">
+        <select name="hour_id" id="hour_id">
             @forelse($hour as $hour)
-                <option value="{{ $hour->id }}">{{ $hour->day_of_the_week }} | {{ $hour->hour }}</option>
+                @if ($hour->reserved_places==$hour->available_places)
+                    <option value="{{ $hour->id }}" disabled>{{ $hour->day_of_the_week }} | {{ $hour->hour }} ({{ $hour->reserved_places }}/{{ $hour->available_places }})</option>
+                @else 
+                    <option value="{{ $hour->id }}">{{ $hour->day_of_the_week }} | {{ $hour->hour }} ({{ $hour->reserved_places }}/{{ $hour->available_places }})</option>
+                @endif
             @empty
                 <option value="none">{{ ("No hay horas disponibles para esta actividad.") }}</option>
             @endforelse
@@ -51,31 +55,40 @@
 
     $(document).ready(function(){
 
-        $("#activity").val(<?php echo $old_activity[0]->id ?>);
+        $("#activity_id").val(<?php echo $old_activity[0]->id ?>);
 
-        $("#hour").val(<?php echo $old_hour->id ?>);
+        $("#hour_id").val(<?php echo $old_hour->id ?>);
 
-        $("#activity").on("change", () => {
+        $("#activity_id").on("change", () => {
 
             hours=<?php echo $hours ?>;
             save=[];
 
             for(i=0;i<hours.length;i++) {
 
-                if(hours[i].act_id==$('#activity').val()) {
+                if(hours[i].act_id==$('#activity_id').val()) {
 
-                    save[i]=hours[i].day_of_the_week+' | '+hours[i].hour;
+                    if(hours[i].reserved_places==hours[i].available_places) {
+
+                        save[i]='<option value="'+i+'" disabled>'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
+
+                    } else {
+
+                        save[i]='<option value="'+i+'">'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
+
+                    }
+                    
 
                 }
 
             }
 
-            $("#hour").empty();
+            $("#hour_id").empty();
 
             for(j=0;j<save.length;j++) {
 
                 if(save[j])
-                    $("#hour").append('<option value="'+j+'">'+save[j]+'</option>');
+                    $("#hour_id").append(save[j]);
 
             }
 

@@ -14,9 +14,9 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <label for="" class="form-label">Nombre</label>
+            <label class="form-label">Nombre</label>
             <p class="form-control">{{$user->name}}</p>
-            <label for="" class="form-label">Email</label>
+            <label class="form-label">Email</label>
             <p class="form-control">{{$user->email}}</p>
             <h2 class="h5 text-primary font-weight-bold">Listado de Roles</h2>
             {!!Form::model($user,['route'=>['auth.admin.users.update',$user],'method'=>'put'])!!}
