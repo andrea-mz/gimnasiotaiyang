@@ -2,8 +2,9 @@
 
 @section("content")
 
-<form class="w-100" method="PUT" action="{{ $route }}" enctype="multipart/form-data">
+<form class="w-100" method="POST" action="{{ route('reservations.update', $reservation->id) }}" enctype="multipart/form-data">
 @csrf
+@method('PUT')
     <h1 class="my-5 titulo fs-1">{{ $title }}</h1>
     <div class="borde"></div>
     <div class="mt-5 mx-auto row justify-content-center w-25">
@@ -63,18 +64,18 @@
 
             hours=<?php echo $hours ?>;
             save=[];
-
+            console.log(hours);
             for(i=0;i<hours.length;i++) {
 
                 if(hours[i].act_id==$('#activity_id').val()) {
 
                     if(hours[i].reserved_places==hours[i].available_places) {
 
-                        save[i]='<option value="'+i+'" disabled>'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
+                        save[i+1]='<option value="'+(i+1)+'" disabled>'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
 
                     } else {
 
-                        save[i]='<option value="'+i+'">'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
+                        save[i+1]='<option value="'+(i+1)+'">'+hours[i].day_of_the_week+' | '+hours[i].hour+' ('+hours[i].reserved_places+'/'+hours[i].available_places+')</option>';
 
                     }
                     
@@ -84,9 +85,11 @@
             }
 
             $("#hour_id").empty();
+            console.log(save);
 
             for(j=0;j<save.length;j++) {
 
+                
                 if(save[j])
                     $("#hour_id").append(save[j]);
 

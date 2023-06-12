@@ -20,7 +20,7 @@
 
 </style>
 
-<form class="w-100" method="POST" action="{{ $route }}">
+<form class="w-100" method="POST" action="{{ route('reservations.store') }}">
 @csrf
     @isset($update)
         @method("PUT")

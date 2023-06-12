@@ -32,7 +32,7 @@
                                 }}
                             </td>
                             <td width="10px" class="border px-4 py-2">
-                                <a class="btn btn-primary" href="{{route('auth.admin.users.edit', $user)}}">Editar</a>
+                                <a class="btn btn-primary" href="{{ route('auth.admin.users.edit', $user->id) }}">Editar</a>
                             </td>
                         </tr>
                     @empty

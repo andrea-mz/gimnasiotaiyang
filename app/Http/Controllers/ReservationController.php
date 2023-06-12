@@ -66,18 +66,14 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "user_id" => "required",
-            "hour_id" => "required",
-        ]);
+        for($i=0;$i<count($request->hour_id);$i++) {
+            $data = [
+                'user_id' => Auth::user()->id,
+                'hour_id' => $request->hour_id[$i],
+            ];
+            $reservation = Reservation::create($data);
+        }
 
-        dd($request);
-
-        // $reservation = Reservation::create(
-        //     $request->only("user_id", "hour_id")
-        // );
-        // $reservation->user_id = Auth::user()->id;
-        // $reservation->save();
         Hour::add_reserved_place($request->hour_id);
         return redirect(route("activities.index"))
             ->with("success", __("¡Reserva creada correctamente!"));
@@ -99,8 +95,8 @@ class ReservationController extends Controller
         $update = true;
         $title = __("Editar reserva");
         $textButton = __("Actualizar");
-        $route = route("reservations.update", ["reservation" => $reservation]);
-        return view("reservations.edit", compact("update", "title", "textButton", "route", "reservation", "activities", "old_activity", "hours", "hour", "old_hour"));
+        //$route = route("reservations.update", ["reservation" => $reservation]);
+        return view("reservations.edit", compact("update", "title", "textButton", "reservation", "activities", "old_activity", "hours", "hour", "old_hour"));
     }
 
     /**
@@ -113,13 +109,12 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $this->validate($request, [
-            // "user_id" => "required" . $reservation->id,
             "hour_id" => "required",
         ]);
         Hour::delete_reserved_place($reservation->hour_id);
         Hour::add_reserved_place($request->hour_id);
         $reservation->fill($request->only("user_id", "hour_id"))->save();
-        return back()->with("success", __("¡Reserva actualizada correctamente!"));
+        return redirect(route("reservations.index"))->with("success", __("¡Reserva actualizada correctamente!"));
     }
 
     /**

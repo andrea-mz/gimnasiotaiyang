@@ -38,22 +38,6 @@ Route::resource('/activities', ActivityController::class);
 
 Route::resource('/reservations', ReservationController::class);
 
-// Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');->except(['store'])
-
-// Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
-
-// Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
-
-// Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
-
-// Route::get('reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
-
-// Route::put('reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
-
-// Route::get('reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
-
-// Route::delete('reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
-
 Route::get('contacta',[ContactaController::class,'index'])->name('contacta.index');
 
 Route::post('contacta',[ContactaController::class,'store'])->name('contacta.store');
