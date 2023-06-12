@@ -37,4 +37,16 @@ class Hour extends Model
 
     }
 
+    public static function add_reserved_place($id) {
+
+        return DB::table('hours')->where('id', $id)->increment('reserved_places', 1);
+
+    }
+
+    public static function delete_reserved_place($id) {
+
+        return DB::table('hours')->where('id', $id)->decrement('reserved_places', 1); 
+
+    }
+
 }
