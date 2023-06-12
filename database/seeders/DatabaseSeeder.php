@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
             'user_id'=>'1',
             'role_id'=>'1',
         ]);
+        DB::table('role_user')->insert([
+            'user_id'=>'2',
+            'role_id'=>'3',
+        ]);
         $this->seedRelationRolesUser();
         $this->seedActivities();
         $this->seedHours();
@@ -36,7 +40,7 @@ class DatabaseSeeder extends Seeder
     public function seedRelationRolesUser() {
 
         $roles=Role::where('name','<>','admin')->get();
-        $users=User::where('name','<>','andrea')->get();
+        $users=User::where('name','<>','admin')->where('name','<>','guest')->get();
 
         foreach ($users as $user) {
 

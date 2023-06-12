@@ -17,9 +17,29 @@ class UserController extends Controller
 
     }
 
+    // public function create()
+    // {
+    //     $user = new User;
+    //     $title = __("Crear Usuario");
+    //     $textButton = __("Crear");
+    //     $route = route("users.store");
+    //     return view("users.create", compact("title", "textButton", "route", "user"));
+    // }
+
+    // public function store(Request $request)
+    // {
+    //     $data = [
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //     ];
+    //     $user = User::create($data);
+
+    //     return redirect(route("auth.admin.users.index"))
+    //         ->with("success", __("Usuario creado correctamente!"));
+    // }
+
     public function edit(User $user) {
 
-        dd($user);
         $roles=Role::all();
         return view('auth.admin.users.edit', compact('user','roles'));
 
