@@ -325,11 +325,11 @@ return [
             'url'        => 'admin/list_users',
             'icon'       => 'far fa-fw fa-user',
         ],
-        [
-            'text'       => 'Editar roles',
-            'url'        => 'admin/users/index',
-            'icon'       => 'fas fa-fw fa-lock',
-        ],
+        // [
+        //     'text'       => 'Editar roles',
+        //     'url'        => 'admin/users/index',
+        //     'icon'       => 'fas fa-fw fa-lock',
+        // ],
 
         ['header' => 'GYMTAIYANG'],
         [
@@ -341,6 +341,11 @@ return [
             'text'       => 'Listado de Actividades',
             'url'        => 'admin/list_activities',
             'icon' => 'far fa-fw fa-heart',
+        ],
+        [
+            'text'       => 'Listado de Horas',
+            'url'        => 'admin/list_hours',
+            'icon' => 'far fa-fw fa-square',
         ],
         [
             'text'       => 'Listado de Reservas',

@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
     Route::get('/list_users',[AdminController::class,'list_users']);
     Route::get('/list_activities',[AdminController::class,'list_activities']);
+    Route::get('/list_hours',[AdminController::class,'list_hours']);
     Route::get('/list_reservations',[AdminController::class,'list_reservations']);
     Route::get('/users/index',[UserController::class,'index'])->name('auth.admin.users.index');
     Route::get('/users/edit',[UserController::class,'edit'])->name('auth.admin.users.edit');

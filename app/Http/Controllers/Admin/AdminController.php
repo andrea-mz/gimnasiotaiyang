@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Activity;
+use App\Models\Hour;
 use App\Models\Reservation;
 
 class AdminController extends Controller
@@ -45,6 +46,18 @@ class AdminController extends Controller
 
             $activities=Activity::all();
             return view("auth.admin.list_activities", compact("activities"));
+
+        }
+
+    }
+
+    public function list_hours() {
+
+        if(Auth::user()->hasroles('admin')) {
+
+            $hours=Hour::with('activity')->get(); //no coge activity
+            $activities=Activity::all();
+            return view("auth.admin.list_hours", compact("hours", "activities"));
 
         }
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="titulo mb-5 fs-1">Registro de Usuario</h1>
-    <form action="POST" action="{{ route('register') }}" class="login text-white fs-3 row mx-auto flex-column border border-5 border-white p-3">
+    <form method="POST" action="{{ route('register') }}" class="login text-white fs-3 row mx-auto flex-column border border-5 border-white p-3">
         @csrf
         <label for="name" class="my-3 mx-5 ps-4">Nombre de usuario:</label>
         <input type="text" name="name" id="name" class="my-3 mx-auto w-75 form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required autocomplete="name" autofocus>

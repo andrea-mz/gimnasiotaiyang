@@ -11,7 +11,7 @@ class Hour extends Model
 
     use HasFactory;
 
-    protected $fillable=['name'];
+    protected $fillable=['act_id', 'day_of_the_week', 'hour', 'reserved_places', 'available_places'];
 
     public function reservations() {
 
