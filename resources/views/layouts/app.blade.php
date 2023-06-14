@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300$display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Anek Tamil' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">    <link href='https://fonts.googleapis.com/css?family=Anek Tamil' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <title>Gimnasio 太阳</title>
@@ -26,33 +25,81 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-    <header class="px-2 py-3 row justify-content-center align-items-center">
-        <div class="logo col-xl-2 col-md-2">
-            <a href="{{ url('/') }}"><img src="{{asset('images/logo/logo.png')}}" alt="Logotipo Gimnasio 太阳"></a>
+    <header>
+        <div id="header_ord" class="px-2 py-3 row justify-content-center align-items-center">
+            <div class="logo col-xl-2 col-md-2">
+                <a href="{{ url('/') }}"><img src="{{asset('images/logo/logo.png')}}" alt="Logotipo Gimnasio 太阳" class="w-25"></a>
+            </div>
+            <nav class="menu mt-4 col-xl-9 col-md-9">
+                <ul class="d-flex fs-4 list-unstyled justify-content-end">
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
+                    @auth
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
+                    @endauth
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
+                    @guest
+                        <li class="mx-2 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                        </a></li>
+                    @endguest
+                    @auth
+                        <li class="me-2"><a class="text-decoration-none text-white text-uppercase d-flex align-items-center" href="{{ route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>{{ Auth::user()->name }}</a></li>
+                        <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                {{ csrf_field() }}
+                            </form>
+                    @endauth
+                </ul>
+            </nav>
         </div>
-        <nav class="menu mt-4 col-xl-9 col-md-9">
-            <ul class="d-flex fs-4 list-unstyled justify-content-end">
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
-                @auth
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
-                @endauth
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
-                    <li class="ms-2 me-1 mt-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg>
-                    </a></li>
-                @auth
-                    <li class="me-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">{{ Auth::user()->name }}</a></li>
-                    <li class="mx-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a></li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form>
-                @endauth
-            </ul>
+        <nav id="header_mov" class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid d-flex justify-content-between row">
+                <a href="{{ url('/') }}" class="navbar-brand w-25"><img src="{{asset('images/logo/logo.png')}}" alt="Logotipo Gimnasio 太阳" class="col-3"></a>
+                <button class="navbar-toggler col-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5> </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="d-flex flex-column list-unstyled justify-content-end">
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ url('/') }}">Inicio</a></li>
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('activities.index') }}">Actividades</a></li>
+                        @auth
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('reservations.index') }}">Reservas</a></li>
+                        @endauth
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('company') }}">Empresa</a></li>
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('contacta.index') }}">Contacto</a></li>
+                        @guest
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('login') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                            </a></li>
+                        @endguest
+                        @auth
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase d-flex" href="{{ route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>{{ Auth::user()->name }}</a></li>
+                            <li class="my-2"><a class="text-decoration-none text-white text-uppercase" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                    {{ csrf_field() }}
+                                </form>
+                        @endauth
+                    </ul>
+                </div>
+                </div>
+            </div>
         </nav>
     </header>
     <main class="py-4">
@@ -63,7 +110,7 @@
         @yield('content')
     </main>
     <footer class="mt-5">
-        <nav class="pt-5 mb-5 d-flex justify-content-around">
+        <nav class="pt-5 mb-5 d-flex justify-content-around" id="footer_contacto">
             <a href="tel:+34666666666" class="fs-3 d-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telephone-fill me-2" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
@@ -116,9 +163,10 @@
               </li>
             </ul>
         </nav>
-        <p class="mt-5 fs-2 text-muted text-center">Copyright © 2023 - Gimnasio 太阳</p>
+        <p class="mt-5 fs-3 text-muted text-center" id="copyright">Copyright © 2023 - Gimnasio 太阳</p>
     </footer>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 </body>
 </html>

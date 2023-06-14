@@ -318,13 +318,6 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],*/
-
-        ['header' => 'USUARIOS'],
-        [
-            'text'       => 'Listado de Usuarios',
-            'url'        => 'admin/list_users',
-            'icon'       => 'far fa-fw fa-user',
-        ],
         // [
         //     'text'       => 'Editar roles',
         //     'url'        => 'admin/users/index',
@@ -336,6 +329,11 @@ return [
             'text'       => 'Página Principal',
             'url'        => '/',
             'icon' => 'far fa-fw fa-circle',
+        ],
+        [
+            'text'       => 'Listado de Usuarios',
+            'url'        => 'admin/list_users',
+            'icon'       => 'far fa-fw fa-user',
         ],
         [
             'text'       => 'Listado de Actividades',

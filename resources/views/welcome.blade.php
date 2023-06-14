@@ -11,7 +11,7 @@
         <h1 class="titulo fs-1">Gimnasio en oviedo</h1>
         <div class="borde"></div>
         <p class="text-white text-center fs-3 pb-3">Con unas instalaciones deportivas de última tecnología.</p>
-        <div id="carouselIndicators" class="carousel slide w-50 m-auto" data-bs-ride="carousel">
+        <div id="carouselIndicators" class="carousel slide m-auto" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
