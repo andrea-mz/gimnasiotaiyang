@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'AdminLTE 3',
-    'title_prefix' => 'GymTaiYang |',
+    'title_prefix' => 'GymTaiyang |',
     'title_postfix' => '', //| ProyectosCPY
 
     /*
