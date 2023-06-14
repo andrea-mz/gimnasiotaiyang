@@ -1,11 +1,11 @@
-<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">    
+<form class="w-100" method="POST" action="{{ $route }}" enctype="multipart/form-data">
 @csrf
     @isset($update)
         @method("PUT")
     @endisset
     <h1 class="my-5 titulo fs-1">{{ $title }}</h1>
     <div class="borde"></div>
-    <div class="mt-5 mx-auto row justify-content-center w-50">
+    <div class="mt-5 mx-auto row justify-content-center w-50 formulario">
         <div class="col-6">
             <label class="block uppercase tracking-wide text-light text-xs font-bold -my-1 mb-3" for="shortname">
                 {{ __("Abreviatura") }}
@@ -40,7 +40,7 @@
             </div>
             @enderror
         </div>
-        <div class="md:flex md:items-center">
+        <div id="boton" class="md:flex md:items-center">
             <div class="md:w-1/3">
                 <button class="shadow bg-yellow-400 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                     {{ $textButton }}

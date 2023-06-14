@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300$display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">    <link href='https://fonts.googleapis.com/css?family=Anek Tamil' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css"/>
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <title>Gimnasio 太阳</title>
     <link rel="icon" href="{{asset('images/logo/logo.ico')}}">
@@ -23,6 +24,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 </head>
 <body>
     <header>
@@ -62,7 +64,7 @@
         <nav id="header_mov" class="navbar navbar-dark bg-dark fixed-top">
             <div class="container-fluid d-flex justify-content-between row">
                 <a href="{{ url('/') }}" class="navbar-brand w-25"><img src="{{asset('images/logo/logo.png')}}" alt="Logotipo Gimnasio 太阳" class="col-3"></a>
-                <button class="navbar-toggler col-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <button class="navbar-toggler col-1 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
@@ -132,7 +134,7 @@
         </nav>
         <nav class="text-center">
             <p class="fs-2 text-uppercase mb-5">Redes Sociales</p>
-            <ul class="list-unstyled d-flex justify-content-center">
+            <ul class="list-unstyled d-flex justify-content-center" id="redes_sociales">
                 <li class="fs-3 mx-5">
                     <a href="https://www.whatsapp.com/" target="_blank">
                       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-whatsapp" viewBox="0 0 16 16">

@@ -106,7 +106,7 @@
 					last:       "Ultima"
 				},
 			},
-
+            responsive: true
         });
 
         $('.dataTables_length').addClass('bs-select');

@@ -7,14 +7,14 @@
 @else
 @if(Auth::user()->hasroles('admin'))
     <div class="d-flex justify-content-end me-5">
-        <a class="btn btn-outline-warning me-5" href="{{ route('activities.create') }}">CREAR ACTIVIDAD</a>
+        <a class="btn btn-outline-warning me-5" href="{{ route('activities.create') }}" id="boton_crear_act">CREAR ACTIVIDAD</a>
     </div>
 @endif
 @endguest
 <div class="borde"></div>
-<div class="my-5 d-flex justify-content-center row">
+<div class="my-5 d-flex justify-content-center row" id="actividades_index">
     @forelse($activities as $activity)
-        <div class="col-3 mx-4">
+        <div class="col-3 mx-4 actividad">
             <div class="card p-0 bg-dark w-100 h-75">
                 <img class="w-100 h-100" src="images/{{$activity->image}}" alt="{{ $activity->name }}">
                 <h1 class="text-uppercase text-center text-light texto-imagen-centrado texto-actividades">{{ $activity->name }}</h1>
