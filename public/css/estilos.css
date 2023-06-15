@@ -322,6 +322,12 @@ footer nav a:hover {
 
     }
 
+    #tabla_reservas_wrapper {
+
+        width: 100% !important;
+
+    }
+
 }
 
 @media (max-width: 500px) {
@@ -360,6 +366,26 @@ footer nav a:hover {
     .formulario {
 
         width: 100% !important;
+
+    }
+
+    #reservas_create {
+
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .datatable_acciones {
+
+        display: none !important;
+
+    }
+
+    .dtr-details .dtr-data {
+
+        display: flex;
 
     }
 

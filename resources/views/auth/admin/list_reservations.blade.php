@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <table class="border-separate border-2 text-center border-gray-500 mt-3" style="width: 100%">
+            <table class="table-responsive border-separate border-2 text-center border-gray-500 mt-3" style="width: 100%">
                 <thead>
                     <tr>
                         <th class="px-4 py-2">{{ __("Id") }}</th>
@@ -23,7 +23,7 @@
                 <tbody>
                     @forelse($reservations as $res)
                         <tr>
-                            <td class="border px-4 py-2">{{ $res->id }}</td>    
+                            <td class="border px-4 py-2">{{ $res->id }}</td>
                             <td class="border px-4 py-2">{{ $res->user->name }}</td>
                             <td class="border px-4 py-2">{{ $res->hour->day_of_the_week }}</td>
                             <td class="border px-4 py-2">{{ $res->hour->hour }}</td>
